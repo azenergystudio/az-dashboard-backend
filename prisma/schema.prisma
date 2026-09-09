@@ -1,0 +1,788 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum PermissionModule {
+  AUTH
+  USERS
+  ORGANIZATIONS
+  BUILDINGS
+  FLOORS
+  ROOMS
+  DEVICE_TYPES
+  DEVICES
+  EQUIPMENT_TYPES
+  EQUIPMENTS
+  PARAMETERS
+  HISTORY_MODELS
+  TELEMETRY
+  IMPORTS
+  REPORTS
+  AI
+  AUDIT
+  SETTINGS
+}
+
+enum DataSource {
+  DIGITAL_DELIVERY
+  DIGITAL_TWIN
+  IMPORT
+  API
+  MANUAL
+}
+
+// ======================================================
+// ORGANIZATION
+// One organization = one client/company.
+// Multiple users can belong to the same organization.
+// ======================================================
+
+model Organization {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  name String
+  slug String @unique
+
+  logo    String?
+  email   String?
+  phone   String?
+  address String?
+
+  isActive Boolean @default(true)
+
+  users     User[]
+  buildings Building[]
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  auditLogs AuditLog[]
+
+  @@index([name])
+  @@index([isActive])
+}
+
+// ======================================================
+// ROLE
+// Examples:
+// SUPER_ADMIN
+// ORGANIZATION_ADMIN
+// USER
+// ======================================================
+
+model Role {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  name        String  @unique
+  description String?
+
+  isActive Boolean @default(true)
+
+  users       User[]
+  permissions RolePermission[]
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  auditLogs AuditLog[]
+
+  @@index([isActive])
+}
+
+// ======================================================
+// PERMISSION
+// Master list of available permissions.
+// ======================================================
+
+model Permission {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  module PermissionModule
+
+  name        String  @unique
+  description String?
+
+  isActive Boolean @default(true)
+
+  roles RolePermission[]
+  users UserPermission[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([module])
+  @@index([isActive])
+}
+
+// ======================================================
+// ROLE PERMISSION
+// Default permissions assigned to a role.
+// ======================================================
+
+model RolePermission {
+  id String @id @default(cuid())
+
+  roleId       String
+  permissionId String
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([roleId, permissionId])
+  @@index([roleId])
+  @@index([permissionId])
+}
+
+// ======================================================
+// USER
+// Users belong to an organization except platform-level
+// Super Admins, whose organizationId can remain null.
+// ======================================================
+
+model User {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  name     String
+  email    String @unique
+  password String
+
+  roleId String
+  role   Role   @relation(fields: [roleId], references: [id])
+
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+
+  auditLogs   AuditLog[]
+  sessions    UserSession[]
+  permissions UserPermission[]
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([organizationId])
+  @@index([roleId])
+  @@index([isActive])
+}
+
+// ======================================================
+// USER PERMISSION
+//
+// Allows permissions to differ between individual
+// organization admins.
+//
+// Example:
+// Org A Admin:
+//   CREATE_BUILDING
+//   CREATE_FLOOR
+//
+// Org B Admin:
+//   CREATE_BUILDING
+//   CREATE_FLOOR
+//   CREATE_DEVICE
+//   MANAGE_USERS
+// ======================================================
+
+model UserPermission {
+  id String @id @default(cuid())
+
+  userId       String
+  permissionId String
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, permissionId])
+  @@index([userId])
+  @@index([permissionId])
+}
+
+// ======================================================
+// BUILDING
+//
+// organizationId is the main ownership boundary.
+//
+// Organization A can only access buildings belonging
+// to Organization A.
+// ======================================================
+
+model Building {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  buildingType   String?
+  grossFloorArea Float?
+  netFloorArea   Float?
+
+  name        String
+  description String?
+
+  latitude  Float?
+  longitude Float?
+  timezone  String?
+
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  floors Floor[]
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([organizationId, name])
+  @@index([organizationId])
+  @@index([isActive])
+}
+
+// ======================================================
+// FLOOR
+// ======================================================
+
+model Floor {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  name        String
+  floorNumber Int
+
+  grossFloorArea Float?
+
+  // Used later for code-generated floor plans.
+  width  Float?
+  height Float?
+  scale  Float?
+
+  buildingId String
+  building   Building @relation(fields: [buildingId], references: [id])
+
+  rooms Room[]
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([buildingId])
+  @@index([isActive])
+}
+
+// ======================================================
+// ROOM
+// ======================================================
+
+model Room {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  modelId Int?
+
+  name       String
+  roomNumber String
+
+  // Floor-plan geometry.
+  // Example:
+  // [
+  //   { "x": 10, "y": 20 },
+  //   { "x": 100, "y": 20 },
+  //   { "x": 100, "y": 80 },
+  //   { "x": 10, "y": 80 }
+  // ]
+  polygon Json?
+
+  centerX Float?
+  centerY Float?
+
+  floorId String
+  floor   Floor  @relation(fields: [floorId], references: [id])
+
+  devices   Device[]
+  equipment Equipment[]
+
+  deviceRoomMappings    DeviceRoomMapping[]
+  equipmentRoomMappings EquipmentRoomMapping[]
+  lightingInstallations LightingInstallation[]
+  sensors               Sensor[]
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([floorId])
+  @@index([isActive])
+}
+
+// ======================================================
+// DEVICE TYPE
+//
+// Common/master definition.
+//
+// Examples:
+// Flow Meter
+// Energy Meter
+// Temperature Sensor
+// Pressure Sensor
+// ======================================================
+
+model DeviceType {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  name        String  @unique
+  description String?
+
+  devices Device[]
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive])
+}
+
+// ======================================================
+// DEVICE
+//
+// Actual installed device instance.
+//
+// Examples:
+// FM-01
+// FM-02
+// EM-01
+//
+// DeviceType = Flow Meter
+// Device tag = FM-01
+// ======================================================
+
+model Device {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  tag  String
+  name String?
+
+  manufacturer String?
+  model        String?
+  serialNumber String? @unique
+
+  // Future communication/integration information.
+  protocol  String?
+  ipAddress String?
+
+  deviceTypeId String
+  deviceType   DeviceType @relation(fields: [deviceTypeId], references: [id])
+
+  roomId String
+  room   Room   @relation(fields: [roomId], references: [id])
+
+  equipment      EquipmentDevice[]
+  connectedRooms DeviceRoomMapping[]
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([deviceTypeId])
+  @@index([roomId])
+  @@index([tag])
+  @@index([isActive])
+}
+
+model DeviceRoomMapping {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  deviceId String
+  roomId   String
+
+  device Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+  room   Room   @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([deviceId, roomId])
+}
+
+// ======================================================
+// EQUIPMENT TYPE
+//
+// Examples:
+// AHU
+// FCU
+// Chiller
+// Pump
+// ======================================================
+
+model EquipmentType {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  name        String  @unique
+  description String?
+
+  equipment Equipment[]
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive])
+}
+
+// ======================================================
+// EQUIPMENT
+//
+// Actual equipment instance.
+//
+// Examples:
+// AHU-01
+// AHU-02
+// FCU-01
+// CH-01
+// ======================================================
+
+model Equipment {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  tag  String
+  name String?
+
+  manufacturer String?
+  model        String?
+  serialNumber String?
+
+  equipmentTypeId String
+  equipmentType   EquipmentType @relation(fields: [equipmentTypeId], references: [id])
+
+  roomId String
+  room   Room   @relation(fields: [roomId], references: [id])
+
+  devices        EquipmentDevice[]
+  connectedRooms EquipmentRoomMapping[]
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([equipmentTypeId])
+  @@index([roomId])
+  @@index([tag])
+  @@index([isActive])
+}
+
+// ======================================================
+// EQUIPMENT DEVICE
+//
+// Many-to-many mapping between equipment and devices.
+//
+// Example:
+//
+// AHU-01
+//   ├── Flow Meter FM-01
+//   ├── Temperature Sensor TS-01
+//   └── Energy Meter EM-01
+// ======================================================
+
+model EquipmentDevice {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  equipmentId String
+  deviceId    String
+
+  equipment Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+  device    Device    @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([equipmentId, deviceId])
+  @@index([equipmentId])
+  @@index([deviceId])
+}
+
+model EquipmentRoomMapping {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  equipmentId String
+  roomId      String
+
+  equipment Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+  room      Room      @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([equipmentId, roomId])
+  @@index([equipmentId])
+  @@index([roomId])
+}
+
+model Lighting {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  tag  String @unique // L1, L2, L3
+  name String // 18W LED Panel
+
+  wattage Float
+
+  manufacturer String?
+  model        String?
+
+  isActive Boolean @default(true)
+
+  installations LightingInstallation[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive])
+}
+
+model LightingInstallation {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  lightingId String
+  roomId     String
+
+  quantity Int @default(1)
+
+  lighting Lighting @relation(fields: [lightingId], references: [id], onDelete: Cascade)
+  room     Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([lightingId, roomId])
+  @@index([lightingId])
+  @@index([roomId])
+}
+
+model Sensor {
+  id String @id @default(cuid())
+
+  seqNo Int @unique
+
+  name String
+
+  tag String
+
+  type String
+
+  unit String
+
+  roomId String
+
+  room Room @relation(fields: [roomId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}
+
+// ======================================================
+// PARAMETER
+//
+// Global parameter catalog.
+//
+// Examples:
+//
+// Temperature     °C
+// Humidity        %
+// Flow Rate       m³/h
+// Pressure        Pa
+// Energy          kWh
+// Power           kW
+// Fan Speed       RPM
+// ======================================================
+
+model Parameter {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  name        String  @unique
+  unit        String?
+  description String?
+
+  historyModels HistoryModelParameter[]
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive])
+}
+
+// ======================================================
+// HISTORY ENTITY TYPE
+// ======================================================
+
+enum HistoryEntityType {
+  DEVICE
+  EQUIPMENT
+}
+
+// ======================================================
+// HISTORY MODEL
+//
+// Defines a history-data structure.
+//
+// Example:
+//
+// Flow Meter History
+//
+// Parameters:
+//   Flow Rate
+//   Velocity
+//   Temperature
+//   Pressure
+//
+// We are defining the MODEL here.
+// Actual telemetry storage comes in the next phase.
+// ======================================================
+
+model HistoryModel {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  name        String  @unique
+  description String?
+
+  entityType HistoryEntityType
+
+  parameters HistoryModelParameter[]
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([entityType])
+  @@index([isActive])
+}
+
+// ======================================================
+// HISTORY MODEL PARAMETER
+//
+// Connects parameters to a HistoryModel.
+//
+// Example:
+//
+// Flow Meter History
+//
+// Flow Rate
+// Pressure
+// Temperature
+// Velocity
+// ======================================================
+
+model HistoryModelParameter {
+  id String @id @default(cuid())
+
+  historyModelId String
+  parameterId    String
+
+  displayOrder Int?
+
+  historyModel HistoryModel @relation(fields: [historyModelId], references: [id], onDelete: Cascade)
+  parameter    Parameter    @relation(fields: [parameterId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@unique([historyModelId, parameterId])
+  @@index([historyModelId])
+  @@index([parameterId])
+}
+
+model AuditLog {
+  id    String @id @default(cuid())
+  seqNo Int    @unique
+
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id])
+
+  requestId      String?
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+
+  roleId String?
+  role   Role?   @relation(fields: [roleId], references: [id])
+
+  method   String // GET, POST, PUT, DELETE
+  endpoint String // /buildings
+  action   String? // CREATE_BUILDING, LOGIN, IMPORT_CSV
+
+  requestBody Json?
+  queryParams Json?
+  pathParams  Json?
+
+  responseBody Json?
+  statusCode   Int
+
+  ipAddress String?
+  userAgent String?
+
+  success Boolean
+
+  executionTime Int? // milliseconds
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([organizationId])
+  @@index([createdAt])
+}
+
+model UserSession {
+  id    String @id @default(cuid())
+  seqNo Int    @unique @default(autoincrement())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  refreshToken String
+
+  deviceName      String?
+  deviceType      String?
+  browser         String?
+  operatingSystem String?
+
+  ipAddress String?
+  userAgent String?
+
+  loginAt        DateTime @default(now())
+  lastActivityAt DateTime @default(now())
+
+  expiresAt DateTime
+
+  isRevoked Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@index([isRevoked])
+}
