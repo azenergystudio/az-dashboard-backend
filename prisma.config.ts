@@ -9,7 +9,7 @@ export default defineConfig({
   //   path: "prisma/migrations",
   // },
     migrations: {
-    seed: 'tsx prisma/seed.ts',
+    seed: 'tsx prisma/seeds/permissions.seed.ts',
   },
   datasource: {
     url: process.env["DATABASE_URL"],

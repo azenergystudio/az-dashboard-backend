@@ -5,6 +5,7 @@ import { getNextSeqNo } from 'src/common/utils/sequence.util';
 import { BuildingQueryDto } from './dtos/building-query.dto';
 import { UpdateBuildingDto } from './dtos/update-building.dto';
 import { buildPrismaQuery } from 'src/common/utils/prisma-query.util';
+import { prismaPaginate } from 'src/common/utils/prisma-pagination';
 
 @Injectable()
 export class BuildingsService {
@@ -55,49 +56,43 @@ constructor(
 }
 
 async findAll(query: BuildingQueryDto) {
-  const prismaQuery = buildPrismaQuery(query, [
-    'name',
-    'description',
-  ]);
+  const prismaQuery =
+    buildPrismaQuery(query, [
+      'name',
+      'description',
+    ]);
+
+  const where =
+    prismaQuery.where;
 
   if (query.organizationId) {
-    prismaQuery.where.organizationId =
+    where.organizationId =
       query.organizationId;
   }
 
   if (query.isActive !== undefined) {
-    prismaQuery.where.isActive =
+    where.isActive =
       query.isActive;
   }
 
-  const [items, total] =
-    await this.prisma.$transaction([
-      this.prisma.building.findMany({
-        ...prismaQuery,
-        include: {
-          organization: {
-            select: {
-              id: true,
-              name: true,
-            },
+  return prismaPaginate(
+    this.prisma,
+    this.prisma.building,
+    {
+      ...prismaQuery,
+
+      where,
+
+      include: {
+        organization: {
+          select: {
+            id: true,
+            name: true,
           },
         },
-      }),
-
-      this.prisma.building.count({
-        where: prismaQuery.where,
-      }),
-    ]);
-
-  return {
-    items,
-    total,
-    page: query.page,
-    limit: query.limit,
-    totalPages: Math.ceil(
-      total / query.limit,
-    ),
-  };
+      },
+    },
+  );
 }
 
 async findOne(id: string) {

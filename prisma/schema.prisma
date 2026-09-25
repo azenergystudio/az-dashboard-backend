@@ -20,6 +20,12 @@ enum PermissionModule {
   EQUIPMENTS
   PARAMETERS
   HISTORY_MODELS
+  LIGHTING
+  LIGHTING_INSTALLATIONS
+  PERMISSIONS
+  ROLE_PERMISSIONS
+  USER_PERMISSIONS
+  SENSORS
   TELEMETRY
   IMPORTS
   REPORTS
@@ -99,6 +105,7 @@ model Role {
 // Master list of available permissions.
 // ======================================================
 
+
 model Permission {
   id    String @id @default(cuid())
   seqNo Int    @unique
@@ -140,7 +147,6 @@ model RolePermission {
   @@index([roleId])
   @@index([permissionId])
 }
-
 // ======================================================
 // USER
 // Users belong to an organization except platform-level

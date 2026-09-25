@@ -1,7 +1,6 @@
-import { IsEmail, IsOptional, IsString } from "class-validator/types/decorator/decorators";
+import { IsEmail, IsOptional, IsString } from 'class-validator';
 
 export class UpdateUserDto {
-
   @IsOptional()
   @IsString()
   name?: string;

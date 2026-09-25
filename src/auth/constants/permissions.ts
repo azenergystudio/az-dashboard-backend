@@ -58,14 +58,42 @@ export const PermissionsList = {
   EQUIPMENTS_UPDATE: 'equipments.update',
   EQUIPMENTS_DELETE: 'equipments.delete',
 
+  // Lighting Installations
+  LIGHTING_INSTALLATIONS_CREATE: 'lighting-installations.create',
+  LIGHTING_INSTALLATIONS_READ: 'lighting-installations.read',
+  LIGHTING_INSTALLATIONS_UPDATE: 'lighting-installations.update',
+  LIGHTING_INSTALLATIONS_DELETE: 'lighting-installations.delete',
+
+    // Lighting
+  LIGHTING_CREATE: 'lighting.create',
+  LIGHTING_READ: 'lighting.read',
+  LIGHTING_UPDATE: 'lighting.update',
+  LIGHTING_DELETE: 'lighting.delete',
+
   // Parameters
   PARAMETERS_CREATE: 'parameters.create',
   PARAMETERS_READ: 'parameters.read',
   PARAMETERS_UPDATE: 'parameters.update',
   PARAMETERS_DELETE: 'parameters.delete',
 
+  //Permissions
+    PERMISSIONS_READ: 'permissions.read',
+
+  //Role Permissions
+  ROLE_PERMISSIONS_READ: 'role-permissions.read',
+  ROLE_PERMISSIONS_CREATE: 'role-permissions.create',
+  ROLE_PERMISSIONS_UPDATE: 'role-permissions.update',
+  ROLE_PERMISSIONS_DELETE: 'role-permissions.delete',
+
+  // Permission Management
+  USER_PERMISSIONS_READ: 'user-permissions.read',
+  USER_PERMISSIONS_UPDATE: 'user-permissions.update',
+
   // History Models
   HISTORY_MODELS_READ: 'history-models.read',
+  HISTORY_MODELS_CREATE: 'history-models.create',
+  HISTORY_MODELS_UPDATE: 'history-models.update',
+  HISTORY_MODELS_DELETE: 'history-models.delete',
 
   // Telemetry
   TELEMETRY_READ: 'telemetry.read',
@@ -76,6 +104,12 @@ export const PermissionsList = {
   // Reports
   REPORTS_READ: 'reports.read',
   REPORTS_EXPORT: 'reports.export',
+
+//   Sensors
+  SENSORS_CREATE: 'sensors.create',
+  SENSORS_READ: 'sensors.read',
+  SENSORS_UPDATE: 'sensors.update',
+  SENSORS_DELETE: 'sensors.delete',
 
   // AI
   AI_CHAT: 'ai.chat',

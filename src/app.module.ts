@@ -28,6 +28,9 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { PermissionGuard } from './auth/guards/permission.guard';
 import { AuthorizationModule } from './authorization/authorization.module';
+import { SensorsModule } from './sensors/sensors.module';
+import { LightingModule } from './lighting/lighting.module';
+import { LightingInstallationsModule } from './lighting-installations/lighting-installations.module';
 
 @Module({
   imports: [
@@ -63,6 +66,9 @@ import { AuthorizationModule } from './authorization/authorization.module';
     TelemetryModule,
     ImportsModule,
     DashboardModule,
+    LightingInstallationsModule,
+    LightingModule,
+    SensorsModule,
     AiModule,
   ],
 

@@ -2,6 +2,7 @@ import {
   Injectable,
   UnauthorizedException,
   ForbiddenException,
+  NotFoundException,
 } from '@nestjs/common';
 
 import { ConfigService } from '@nestjs/config';
@@ -14,6 +15,7 @@ import { PasswordService } from './password.service';
 import { TokenService } from './token.service';
 import { SessionsService } from 'src/sessions/sessions.service';
 import { console } from 'inspector/promises';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class AuthService {
@@ -23,6 +25,7 @@ export class AuthService {
     private readonly tokenService: TokenService,
     private readonly sessionsService: SessionsService,
     private readonly configService: ConfigService,
+    private readonly prisma: PrismaService,
   ) {}
 
   async login(loginDto: LoginDto): Promise<LoginResponse> {
@@ -189,36 +192,113 @@ console.log(
     message: 'Logged out successfully',
   };
 }
+async me(id: string) {
+  const user = await this.prisma.user.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      id: true,
+      seqNo: true,
+      name: true,
+      email: true,
+      roleId: true,
+      organizationId: true,
+      isActive: true,
+      createdAt: true,
+      updatedAt: true,
 
-async me(userId: string) {
-  const user = await this.usersService.findById(userId);
+      role: {
+        select: {
+          id: true,
+          name: true,
+          isActive: true,
+
+          permissions: {
+            where: {
+              permission: {
+                isActive: true,
+              },
+            },
+            select: {
+              permission: {
+                select: {
+                  id: true,
+                  name: true,
+                  module: true,
+                  description: true,
+                },
+              },
+            },
+          },
+        },
+      },
+
+      organization: true,
+
+      permissions: {
+        where: {
+          permission: {
+            isActive: true,
+          },
+        },
+        select: {
+          permission: {
+            select: {
+              id: true,
+              name: true,
+              module: true,
+              description: true,
+            },
+          },
+        },
+      },
+    },
+  });
 
   if (!user) {
-    throw new UnauthorizedException();
+    throw new NotFoundException(`User with ID "${id}" not found`);
+  }
+
+  const permissionsMap = new Map<
+    string,
+    {
+      id: string;
+      name: string;
+      module: typeof user.role.permissions[number]['permission']['module'];
+      description: string | null;
+    }
+  >();
+
+  // Role permissions
+  for (const item of user.role.permissions) {
+    permissionsMap.set(
+      item.permission.id,
+      item.permission,
+    );
+  }
+
+  // User-specific permissions
+  for (const item of user.permissions) {
+    permissionsMap.set(
+      item.permission.id,
+      item.permission,
+    );
   }
 
   return {
-    id: user.id,
-    name: user.name,
-    email: user.email,
+    ...user,
 
+    // Don't expose the internal permission mapping structure.
+    permissions: Array.from(permissionsMap.values()),
+
+    // Role still contains its normal role information,
+    // but don't expose its internal RolePermission mapping.
     role: {
       id: user.role.id,
       name: user.role.name,
+      isActive: user.role.isActive,
     },
-
-    organization: user.organization
-      ? {
-          id: user.organization.id,
-          name: user.organization.name,
-        }
-      : null,
-
-    permissions: user.permissions.map((p) => ({
-      id: p.permission.id,
-      name: p.permission.name,
-      module: p.permission.module,
-    })),
   };
 }
 }

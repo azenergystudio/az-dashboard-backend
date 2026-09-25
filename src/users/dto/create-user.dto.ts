@@ -4,17 +4,17 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
-  name: string | undefined;
+  name!: string;
 
   @IsEmail()
-  email: string | undefined;
+  email!: string;
 
   @IsString()
   @MinLength(8)
-  password: string | undefined;
+  password!: string;
 
   @IsString()
-  roleId: string | undefined;
+  roleId!: string;
 
   @IsOptional()
   @IsString()
