@@ -74,7 +74,9 @@ export const ModelName = {
   HistoryModel: 'HistoryModel',
   HistoryModelParameter: 'HistoryModelParameter',
   AuditLog: 'AuditLog',
-  UserSession: 'UserSession'
+  UserSession: 'UserSession',
+  Deployment: 'Deployment',
+  PlatformConfiguration: 'PlatformConfiguration'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -457,6 +459,33 @@ export const UserSessionScalarFieldEnum = {
 export type UserSessionScalarFieldEnum = (typeof UserSessionScalarFieldEnum)[keyof typeof UserSessionScalarFieldEnum]
 
 
+export const DeploymentScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  name: 'name',
+  slug: 'slug',
+  organizationId: 'organizationId',
+  environment: 'environment',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeploymentScalarFieldEnum = (typeof DeploymentScalarFieldEnum)[keyof typeof DeploymentScalarFieldEnum]
+
+
+export const PlatformConfigurationScalarFieldEnum = {
+  id: 'id',
+  deploymentId: 'deploymentId',
+  config: 'config',
+  version: 'version',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlatformConfigurationScalarFieldEnum = (typeof PlatformConfigurationScalarFieldEnum)[keyof typeof PlatformConfigurationScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -471,6 +500,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {

@@ -159,3 +159,13 @@ export type AuditLog = Prisma.AuditLogModel
  * 
  */
 export type UserSession = Prisma.UserSessionModel
+/**
+ * Model Deployment
+ * 
+ */
+export type Deployment = Prisma.DeploymentModel
+/**
+ * Model PlatformConfiguration
+ * 
+ */
+export type PlatformConfiguration = Prisma.PlatformConfigurationModel

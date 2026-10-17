@@ -420,7 +420,9 @@ export const ModelName = {
   HistoryModel: 'HistoryModel',
   HistoryModelParameter: 'HistoryModelParameter',
   AuditLog: 'AuditLog',
-  UserSession: 'UserSession'
+  UserSession: 'UserSession',
+  Deployment: 'Deployment',
+  PlatformConfiguration: 'PlatformConfiguration'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -436,7 +438,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organization" | "role" | "permission" | "rolePermission" | "user" | "userPermission" | "building" | "floor" | "room" | "deviceType" | "device" | "deviceRoomMapping" | "equipmentType" | "equipment" | "equipmentDevice" | "equipmentRoomMapping" | "lighting" | "lightingInstallation" | "sensor" | "parameter" | "historyModel" | "historyModelParameter" | "auditLog" | "userSession"
+    modelProps: "organization" | "role" | "permission" | "rolePermission" | "user" | "userPermission" | "building" | "floor" | "room" | "deviceType" | "device" | "deviceRoomMapping" | "equipmentType" | "equipment" | "equipmentDevice" | "equipmentRoomMapping" | "lighting" | "lightingInstallation" | "sensor" | "parameter" | "historyModel" | "historyModelParameter" | "auditLog" | "userSession" | "deployment" | "platformConfiguration"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2216,6 +2218,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Deployment: {
+      payload: Prisma.$DeploymentPayload<ExtArgs>
+      fields: Prisma.DeploymentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DeploymentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeploymentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DeploymentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeploymentPayload>
+        }
+        findFirst: {
+          args: Prisma.DeploymentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeploymentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DeploymentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeploymentPayload>
+        }
+        findMany: {
+          args: Prisma.DeploymentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeploymentPayload>[]
+        }
+        create: {
+          args: Prisma.DeploymentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeploymentPayload>
+        }
+        createMany: {
+          args: Prisma.DeploymentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DeploymentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeploymentPayload>[]
+        }
+        delete: {
+          args: Prisma.DeploymentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeploymentPayload>
+        }
+        update: {
+          args: Prisma.DeploymentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeploymentPayload>
+        }
+        deleteMany: {
+          args: Prisma.DeploymentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DeploymentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DeploymentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeploymentPayload>[]
+        }
+        upsert: {
+          args: Prisma.DeploymentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeploymentPayload>
+        }
+        aggregate: {
+          args: Prisma.DeploymentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDeployment>
+        }
+        groupBy: {
+          args: Prisma.DeploymentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeploymentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DeploymentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeploymentCountAggregateOutputType> | number
+        }
+      }
+    }
+    PlatformConfiguration: {
+      payload: Prisma.$PlatformConfigurationPayload<ExtArgs>
+      fields: Prisma.PlatformConfigurationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PlatformConfigurationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlatformConfigurationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PlatformConfigurationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlatformConfigurationPayload>
+        }
+        findFirst: {
+          args: Prisma.PlatformConfigurationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlatformConfigurationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PlatformConfigurationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlatformConfigurationPayload>
+        }
+        findMany: {
+          args: Prisma.PlatformConfigurationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlatformConfigurationPayload>[]
+        }
+        create: {
+          args: Prisma.PlatformConfigurationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlatformConfigurationPayload>
+        }
+        createMany: {
+          args: Prisma.PlatformConfigurationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PlatformConfigurationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlatformConfigurationPayload>[]
+        }
+        delete: {
+          args: Prisma.PlatformConfigurationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlatformConfigurationPayload>
+        }
+        update: {
+          args: Prisma.PlatformConfigurationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlatformConfigurationPayload>
+        }
+        deleteMany: {
+          args: Prisma.PlatformConfigurationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PlatformConfigurationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PlatformConfigurationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlatformConfigurationPayload>[]
+        }
+        upsert: {
+          args: Prisma.PlatformConfigurationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlatformConfigurationPayload>
+        }
+        aggregate: {
+          args: Prisma.PlatformConfigurationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlatformConfiguration>
+        }
+        groupBy: {
+          args: Prisma.PlatformConfigurationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlatformConfigurationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PlatformConfigurationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlatformConfigurationCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2619,6 +2769,33 @@ export const UserSessionScalarFieldEnum = {
 export type UserSessionScalarFieldEnum = (typeof UserSessionScalarFieldEnum)[keyof typeof UserSessionScalarFieldEnum]
 
 
+export const DeploymentScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  name: 'name',
+  slug: 'slug',
+  organizationId: 'organizationId',
+  environment: 'environment',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeploymentScalarFieldEnum = (typeof DeploymentScalarFieldEnum)[keyof typeof DeploymentScalarFieldEnum]
+
+
+export const PlatformConfigurationScalarFieldEnum = {
+  id: 'id',
+  deploymentId: 'deploymentId',
+  config: 'config',
+  version: 'version',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlatformConfigurationScalarFieldEnum = (typeof PlatformConfigurationScalarFieldEnum)[keyof typeof PlatformConfigurationScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2633,6 +2810,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -2945,6 +3129,8 @@ export type GlobalOmitConfig = {
   historyModelParameter?: Prisma.HistoryModelParameterOmit
   auditLog?: Prisma.AuditLogOmit
   userSession?: Prisma.UserSessionOmit
+  deployment?: Prisma.DeploymentOmit
+  platformConfiguration?: Prisma.PlatformConfigurationOmit
 }
 
 /* Types for Logging */

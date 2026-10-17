@@ -31,6 +31,8 @@ import { AuthorizationModule } from './authorization/authorization.module';
 import { SensorsModule } from './sensors/sensors.module';
 import { LightingModule } from './lighting/lighting.module';
 import { LightingInstallationsModule } from './lighting-installations/lighting-installations.module';
+import { DeploymentModule } from './deployments/deployment.module';
+import { PlatformConfigurationModule } from './platform-configuration/platform-configuration.module';
 
 @Module({
   imports: [
@@ -70,6 +72,8 @@ import { LightingInstallationsModule } from './lighting-installations/lighting-i
     LightingModule,
     SensorsModule,
     AiModule,
+    DeploymentModule,
+    PlatformConfigurationModule,
   ],
 
   controllers: [AppController],
