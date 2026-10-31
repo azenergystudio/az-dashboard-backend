@@ -422,7 +422,13 @@ export const ModelName = {
   AuditLog: 'AuditLog',
   UserSession: 'UserSession',
   Deployment: 'Deployment',
-  PlatformConfiguration: 'PlatformConfiguration'
+  PlatformConfiguration: 'PlatformConfiguration',
+  TelemetryReading: 'TelemetryReading',
+  WeatherStation: 'WeatherStation',
+  WeatherReading: 'WeatherReading',
+  EnergyEndUse: 'EnergyEndUse',
+  EnergyScenario: 'EnergyScenario',
+  EnergyScenarioResult: 'EnergyScenarioResult'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -438,7 +444,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organization" | "role" | "permission" | "rolePermission" | "user" | "userPermission" | "building" | "floor" | "room" | "deviceType" | "device" | "deviceRoomMapping" | "equipmentType" | "equipment" | "equipmentDevice" | "equipmentRoomMapping" | "lighting" | "lightingInstallation" | "sensor" | "parameter" | "historyModel" | "historyModelParameter" | "auditLog" | "userSession" | "deployment" | "platformConfiguration"
+    modelProps: "organization" | "role" | "permission" | "rolePermission" | "user" | "userPermission" | "building" | "floor" | "room" | "deviceType" | "device" | "deviceRoomMapping" | "equipmentType" | "equipment" | "equipmentDevice" | "equipmentRoomMapping" | "lighting" | "lightingInstallation" | "sensor" | "parameter" | "historyModel" | "historyModelParameter" | "auditLog" | "userSession" | "deployment" | "platformConfiguration" | "telemetryReading" | "weatherStation" | "weatherReading" | "energyEndUse" | "energyScenario" | "energyScenarioResult"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2366,6 +2372,450 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TelemetryReading: {
+      payload: Prisma.$TelemetryReadingPayload<ExtArgs>
+      fields: Prisma.TelemetryReadingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TelemetryReadingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelemetryReadingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TelemetryReadingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelemetryReadingPayload>
+        }
+        findFirst: {
+          args: Prisma.TelemetryReadingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelemetryReadingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TelemetryReadingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelemetryReadingPayload>
+        }
+        findMany: {
+          args: Prisma.TelemetryReadingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelemetryReadingPayload>[]
+        }
+        create: {
+          args: Prisma.TelemetryReadingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelemetryReadingPayload>
+        }
+        createMany: {
+          args: Prisma.TelemetryReadingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TelemetryReadingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelemetryReadingPayload>[]
+        }
+        delete: {
+          args: Prisma.TelemetryReadingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelemetryReadingPayload>
+        }
+        update: {
+          args: Prisma.TelemetryReadingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelemetryReadingPayload>
+        }
+        deleteMany: {
+          args: Prisma.TelemetryReadingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TelemetryReadingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TelemetryReadingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelemetryReadingPayload>[]
+        }
+        upsert: {
+          args: Prisma.TelemetryReadingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TelemetryReadingPayload>
+        }
+        aggregate: {
+          args: Prisma.TelemetryReadingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTelemetryReading>
+        }
+        groupBy: {
+          args: Prisma.TelemetryReadingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TelemetryReadingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TelemetryReadingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TelemetryReadingCountAggregateOutputType> | number
+        }
+      }
+    }
+    WeatherStation: {
+      payload: Prisma.$WeatherStationPayload<ExtArgs>
+      fields: Prisma.WeatherStationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WeatherStationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherStationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WeatherStationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherStationPayload>
+        }
+        findFirst: {
+          args: Prisma.WeatherStationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherStationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WeatherStationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherStationPayload>
+        }
+        findMany: {
+          args: Prisma.WeatherStationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherStationPayload>[]
+        }
+        create: {
+          args: Prisma.WeatherStationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherStationPayload>
+        }
+        createMany: {
+          args: Prisma.WeatherStationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WeatherStationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherStationPayload>[]
+        }
+        delete: {
+          args: Prisma.WeatherStationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherStationPayload>
+        }
+        update: {
+          args: Prisma.WeatherStationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherStationPayload>
+        }
+        deleteMany: {
+          args: Prisma.WeatherStationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WeatherStationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WeatherStationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherStationPayload>[]
+        }
+        upsert: {
+          args: Prisma.WeatherStationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherStationPayload>
+        }
+        aggregate: {
+          args: Prisma.WeatherStationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWeatherStation>
+        }
+        groupBy: {
+          args: Prisma.WeatherStationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WeatherStationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WeatherStationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WeatherStationCountAggregateOutputType> | number
+        }
+      }
+    }
+    WeatherReading: {
+      payload: Prisma.$WeatherReadingPayload<ExtArgs>
+      fields: Prisma.WeatherReadingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WeatherReadingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherReadingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WeatherReadingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherReadingPayload>
+        }
+        findFirst: {
+          args: Prisma.WeatherReadingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherReadingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WeatherReadingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherReadingPayload>
+        }
+        findMany: {
+          args: Prisma.WeatherReadingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherReadingPayload>[]
+        }
+        create: {
+          args: Prisma.WeatherReadingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherReadingPayload>
+        }
+        createMany: {
+          args: Prisma.WeatherReadingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WeatherReadingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherReadingPayload>[]
+        }
+        delete: {
+          args: Prisma.WeatherReadingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherReadingPayload>
+        }
+        update: {
+          args: Prisma.WeatherReadingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherReadingPayload>
+        }
+        deleteMany: {
+          args: Prisma.WeatherReadingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WeatherReadingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WeatherReadingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherReadingPayload>[]
+        }
+        upsert: {
+          args: Prisma.WeatherReadingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeatherReadingPayload>
+        }
+        aggregate: {
+          args: Prisma.WeatherReadingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWeatherReading>
+        }
+        groupBy: {
+          args: Prisma.WeatherReadingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WeatherReadingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WeatherReadingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WeatherReadingCountAggregateOutputType> | number
+        }
+      }
+    }
+    EnergyEndUse: {
+      payload: Prisma.$EnergyEndUsePayload<ExtArgs>
+      fields: Prisma.EnergyEndUseFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EnergyEndUseFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyEndUsePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EnergyEndUseFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyEndUsePayload>
+        }
+        findFirst: {
+          args: Prisma.EnergyEndUseFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyEndUsePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EnergyEndUseFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyEndUsePayload>
+        }
+        findMany: {
+          args: Prisma.EnergyEndUseFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyEndUsePayload>[]
+        }
+        create: {
+          args: Prisma.EnergyEndUseCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyEndUsePayload>
+        }
+        createMany: {
+          args: Prisma.EnergyEndUseCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EnergyEndUseCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyEndUsePayload>[]
+        }
+        delete: {
+          args: Prisma.EnergyEndUseDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyEndUsePayload>
+        }
+        update: {
+          args: Prisma.EnergyEndUseUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyEndUsePayload>
+        }
+        deleteMany: {
+          args: Prisma.EnergyEndUseDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EnergyEndUseUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EnergyEndUseUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyEndUsePayload>[]
+        }
+        upsert: {
+          args: Prisma.EnergyEndUseUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyEndUsePayload>
+        }
+        aggregate: {
+          args: Prisma.EnergyEndUseAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEnergyEndUse>
+        }
+        groupBy: {
+          args: Prisma.EnergyEndUseGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnergyEndUseGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EnergyEndUseCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnergyEndUseCountAggregateOutputType> | number
+        }
+      }
+    }
+    EnergyScenario: {
+      payload: Prisma.$EnergyScenarioPayload<ExtArgs>
+      fields: Prisma.EnergyScenarioFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EnergyScenarioFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EnergyScenarioFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioPayload>
+        }
+        findFirst: {
+          args: Prisma.EnergyScenarioFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EnergyScenarioFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioPayload>
+        }
+        findMany: {
+          args: Prisma.EnergyScenarioFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioPayload>[]
+        }
+        create: {
+          args: Prisma.EnergyScenarioCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioPayload>
+        }
+        createMany: {
+          args: Prisma.EnergyScenarioCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EnergyScenarioCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioPayload>[]
+        }
+        delete: {
+          args: Prisma.EnergyScenarioDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioPayload>
+        }
+        update: {
+          args: Prisma.EnergyScenarioUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioPayload>
+        }
+        deleteMany: {
+          args: Prisma.EnergyScenarioDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EnergyScenarioUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EnergyScenarioUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioPayload>[]
+        }
+        upsert: {
+          args: Prisma.EnergyScenarioUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioPayload>
+        }
+        aggregate: {
+          args: Prisma.EnergyScenarioAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEnergyScenario>
+        }
+        groupBy: {
+          args: Prisma.EnergyScenarioGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnergyScenarioGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EnergyScenarioCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnergyScenarioCountAggregateOutputType> | number
+        }
+      }
+    }
+    EnergyScenarioResult: {
+      payload: Prisma.$EnergyScenarioResultPayload<ExtArgs>
+      fields: Prisma.EnergyScenarioResultFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EnergyScenarioResultFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioResultPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EnergyScenarioResultFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioResultPayload>
+        }
+        findFirst: {
+          args: Prisma.EnergyScenarioResultFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioResultPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EnergyScenarioResultFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioResultPayload>
+        }
+        findMany: {
+          args: Prisma.EnergyScenarioResultFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioResultPayload>[]
+        }
+        create: {
+          args: Prisma.EnergyScenarioResultCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioResultPayload>
+        }
+        createMany: {
+          args: Prisma.EnergyScenarioResultCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EnergyScenarioResultCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioResultPayload>[]
+        }
+        delete: {
+          args: Prisma.EnergyScenarioResultDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioResultPayload>
+        }
+        update: {
+          args: Prisma.EnergyScenarioResultUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioResultPayload>
+        }
+        deleteMany: {
+          args: Prisma.EnergyScenarioResultDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EnergyScenarioResultUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EnergyScenarioResultUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioResultPayload>[]
+        }
+        upsert: {
+          args: Prisma.EnergyScenarioResultUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EnergyScenarioResultPayload>
+        }
+        aggregate: {
+          args: Prisma.EnergyScenarioResultAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEnergyScenarioResult>
+        }
+        groupBy: {
+          args: Prisma.EnergyScenarioResultGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnergyScenarioResultGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EnergyScenarioResultCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EnergyScenarioResultCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2796,6 +3246,103 @@ export const PlatformConfigurationScalarFieldEnum = {
 export type PlatformConfigurationScalarFieldEnum = (typeof PlatformConfigurationScalarFieldEnum)[keyof typeof PlatformConfigurationScalarFieldEnum]
 
 
+export const TelemetryReadingScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  entityType: 'entityType',
+  deviceId: 'deviceId',
+  equipmentId: 'equipmentId',
+  parameterId: 'parameterId',
+  recordedAt: 'recordedAt',
+  value: 'value',
+  quality: 'quality',
+  source: 'source',
+  createdAt: 'createdAt'
+} as const
+
+export type TelemetryReadingScalarFieldEnum = (typeof TelemetryReadingScalarFieldEnum)[keyof typeof TelemetryReadingScalarFieldEnum]
+
+
+export const WeatherStationScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  name: 'name',
+  sourceName: 'sourceName',
+  sourceFile: 'sourceFile',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  organizationId: 'organizationId',
+  buildingId: 'buildingId',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WeatherStationScalarFieldEnum = (typeof WeatherStationScalarFieldEnum)[keyof typeof WeatherStationScalarFieldEnum]
+
+
+export const WeatherReadingScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  weatherStationId: 'weatherStationId',
+  parameterId: 'parameterId',
+  recordedAt: 'recordedAt',
+  value: 'value',
+  source: 'source',
+  createdAt: 'createdAt'
+} as const
+
+export type WeatherReadingScalarFieldEnum = (typeof WeatherReadingScalarFieldEnum)[keyof typeof WeatherReadingScalarFieldEnum]
+
+
+export const EnergyEndUseScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  name: 'name',
+  description: 'description',
+  unit: 'unit',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EnergyEndUseScalarFieldEnum = (typeof EnergyEndUseScalarFieldEnum)[keyof typeof EnergyEndUseScalarFieldEnum]
+
+
+export const EnergyScenarioScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  name: 'name',
+  scenarioType: 'scenarioType',
+  description: 'description',
+  organizationId: 'organizationId',
+  buildingId: 'buildingId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EnergyScenarioScalarFieldEnum = (typeof EnergyScenarioScalarFieldEnum)[keyof typeof EnergyScenarioScalarFieldEnum]
+
+
+export const EnergyScenarioResultScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  scenarioId: 'scenarioId',
+  endUseId: 'endUseId',
+  recordedAt: 'recordedAt',
+  periodType: 'periodType',
+  value: 'value',
+  unit: 'unit',
+  source: 'source',
+  createdAt: 'createdAt'
+} as const
+
+export type EnergyScenarioResultScalarFieldEnum = (typeof EnergyScenarioResultScalarFieldEnum)[keyof typeof EnergyScenarioResultScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2952,6 +3499,20 @@ export type EnumHistoryEntityTypeFieldRefInput<$PrismaModel> = FieldRefInputType
  * Reference to a field of type 'HistoryEntityType[]'
  */
 export type ListEnumHistoryEntityTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HistoryEntityType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DataSource'
+ */
+export type EnumDataSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DataSource'>
+    
+
+
+/**
+ * Reference to a field of type 'DataSource[]'
+ */
+export type ListEnumDataSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DataSource[]'>
     
 
 /**
@@ -3131,6 +3692,12 @@ export type GlobalOmitConfig = {
   userSession?: Prisma.UserSessionOmit
   deployment?: Prisma.DeploymentOmit
   platformConfiguration?: Prisma.PlatformConfigurationOmit
+  telemetryReading?: Prisma.TelemetryReadingOmit
+  weatherStation?: Prisma.WeatherStationOmit
+  weatherReading?: Prisma.WeatherReadingOmit
+  energyEndUse?: Prisma.EnergyEndUseOmit
+  energyScenario?: Prisma.EnergyScenarioOmit
+  energyScenarioResult?: Prisma.EnergyScenarioResultOmit
 }
 
 /* Types for Logging */

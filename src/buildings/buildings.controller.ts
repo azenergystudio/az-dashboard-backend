@@ -13,13 +13,13 @@ export class BuildingsController {
     ) {}
 
 @Get()
-@Permissions(PermissionsList.BUILDINGS_READ)
+// @Permissions(PermissionsList.BUILDINGS_READ)
 findAll(@Query() query: BuildingQueryDto) {
   return this.buildingsService.findAll(query);
 }
 
 @Get(':id')
-@Permissions(PermissionsList.BUILDINGS_READ)
+// @Permissions(PermissionsList.BUILDINGS_READ)
 findOne(@Param('id') id: string) {
   return this.buildingsService.findOne(id);
 }

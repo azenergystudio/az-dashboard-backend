@@ -65,10 +65,12 @@ model Organization {
   users     User[]
   buildings Building[]
 
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  auditLogs   AuditLog[]
-  deployments Deployment[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  auditLogs       AuditLog[]
+  deployments     Deployment[]
+  weatherStations WeatherStation[]
+  energyScenarios EnergyScenario[]
 
   @@index([name])
   @@index([isActive])
@@ -247,8 +249,10 @@ model Building {
 
   isActive Boolean @default(true)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  weatherStations WeatherStation[]
+  energyScenarios EnergyScenario[]
 
   @@unique([organizationId, name])
   @@index([organizationId])
@@ -402,8 +406,9 @@ model Device {
 
   isActive Boolean @default(true)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  telemetryReadings TelemetryReading[]
 
   @@index([deviceTypeId])
   @@index([roomId])
@@ -487,8 +492,9 @@ model Equipment {
 
   isActive Boolean @default(true)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  telemetryReadings TelemetryReading[]
 
   @@index([equipmentTypeId])
   @@index([roomId])
@@ -636,8 +642,10 @@ model Parameter {
 
   isActive Boolean @default(true)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  telemetryReadings TelemetryReading[]
+  weatherReadings   WeatherReading[]
 
   @@index([isActive])
 }
@@ -829,4 +837,127 @@ model PlatformConfiguration {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+// ======================================================
+// TEST / HISTORICAL DATA EXTENSIONS
+// ======================================================
+
+model TelemetryReading {
+  id          String            @id @default(cuid())
+  seqNo       Int               @unique
+  entityType  HistoryEntityType
+  deviceId    String?
+  equipmentId String?
+  parameterId String
+  recordedAt  DateTime
+  value       Float
+  quality     String?           @default("GOOD")
+  source      DataSource        @default(IMPORT)
+  createdAt   DateTime          @default(now())
+
+  device    Device?    @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+  equipment Equipment? @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+  parameter Parameter  @relation(fields: [parameterId], references: [id])
+
+  @@unique([entityType, deviceId, equipmentId, parameterId, recordedAt])
+  @@index([entityType, recordedAt])
+  @@index([deviceId, parameterId, recordedAt])
+  @@index([equipmentId, parameterId, recordedAt])
+}
+
+model WeatherStation {
+  id             String   @id @default(cuid())
+  seqNo          Int      @unique
+  name           String   @unique
+  sourceName     String?
+  sourceFile     String?
+  latitude       Float?
+  longitude      Float?
+  organizationId String
+  buildingId     String?
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  building     Building?        @relation(fields: [buildingId], references: [id], onDelete: SetNull)
+  readings     WeatherReading[]
+
+  @@index([organizationId])
+  @@index([buildingId])
+}
+
+model WeatherReading {
+  id               String     @id @default(cuid())
+  seqNo            Int        @unique
+  weatherStationId String
+  parameterId      String
+  recordedAt       DateTime
+  value            Float
+  source           DataSource @default(IMPORT)
+  createdAt        DateTime   @default(now())
+
+  weatherStation WeatherStation @relation(fields: [weatherStationId], references: [id], onDelete: Cascade)
+  parameter      Parameter      @relation(fields: [parameterId], references: [id])
+
+  @@unique([weatherStationId, parameterId, recordedAt])
+  @@index([recordedAt])
+  @@index([parameterId, recordedAt])
+}
+
+model EnergyEndUse {
+  id          String   @id @default(cuid())
+  seqNo       Int      @unique
+  name        String   @unique
+  description String?
+  unit        String   @default("kW")
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  results EnergyScenarioResult[]
+}
+
+model EnergyScenario {
+  id             String   @id @default(cuid())
+  seqNo          Int      @unique
+  name           String
+  scenarioType   String // BASELINE or PROPOSED
+  description    String?
+  organizationId String
+  buildingId     String
+  startDate      DateTime
+  endDate        DateTime
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization           @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  building     Building               @relation(fields: [buildingId], references: [id], onDelete: Cascade)
+  results      EnergyScenarioResult[]
+
+  @@unique([buildingId, name])
+  @@index([organizationId, buildingId])
+  @@index([scenarioType])
+}
+
+model EnergyScenarioResult {
+  id         String     @id @default(cuid())
+  seqNo      Int        @unique
+  scenarioId String
+  endUseId   String
+  recordedAt DateTime
+  periodType String // HOURLY, DAILY, MONTHLY
+  value      Float
+  unit       String     @default("kW")
+  source     DataSource @default(IMPORT)
+  createdAt  DateTime   @default(now())
+
+  scenario EnergyScenario @relation(fields: [scenarioId], references: [id], onDelete: Cascade)
+  endUse   EnergyEndUse   @relation(fields: [endUseId], references: [id])
+
+  @@unique([scenarioId, endUseId, recordedAt, periodType])
+  @@index([scenarioId, recordedAt])
+  @@index([endUseId, recordedAt])
 }

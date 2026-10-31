@@ -268,6 +268,8 @@ export type OrganizationWhereInput = {
   buildings?: Prisma.BuildingListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
   deployments?: Prisma.DeploymentListRelationFilter
+  weatherStations?: Prisma.WeatherStationListRelationFilter
+  energyScenarios?: Prisma.EnergyScenarioListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -286,6 +288,8 @@ export type OrganizationOrderByWithRelationInput = {
   buildings?: Prisma.BuildingOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
   deployments?: Prisma.DeploymentOrderByRelationAggregateInput
+  weatherStations?: Prisma.WeatherStationOrderByRelationAggregateInput
+  energyScenarios?: Prisma.EnergyScenarioOrderByRelationAggregateInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -307,6 +311,8 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   buildings?: Prisma.BuildingListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
   deployments?: Prisma.DeploymentListRelationFilter
+  weatherStations?: Prisma.WeatherStationListRelationFilter
+  energyScenarios?: Prisma.EnergyScenarioListRelationFilter
 }, "id" | "seqNo" | "slug">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -361,6 +367,8 @@ export type OrganizationCreateInput = {
   buildings?: Prisma.BuildingCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   deployments?: Prisma.DeploymentCreateNestedManyWithoutOrganizationInput
+  weatherStations?: Prisma.WeatherStationCreateNestedManyWithoutOrganizationInput
+  energyScenarios?: Prisma.EnergyScenarioCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -379,6 +387,8 @@ export type OrganizationUncheckedCreateInput = {
   buildings?: Prisma.BuildingUncheckedCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   deployments?: Prisma.DeploymentUncheckedCreateNestedManyWithoutOrganizationInput
+  weatherStations?: Prisma.WeatherStationUncheckedCreateNestedManyWithoutOrganizationInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -397,6 +407,8 @@ export type OrganizationUpdateInput = {
   buildings?: Prisma.BuildingUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   deployments?: Prisma.DeploymentUpdateManyWithoutOrganizationNestedInput
+  weatherStations?: Prisma.WeatherStationUpdateManyWithoutOrganizationNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -415,6 +427,8 @@ export type OrganizationUncheckedUpdateInput = {
   buildings?: Prisma.BuildingUncheckedUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   deployments?: Prisma.DeploymentUncheckedUpdateManyWithoutOrganizationNestedInput
+  weatherStations?: Prisma.WeatherStationUncheckedUpdateManyWithoutOrganizationNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -605,6 +619,34 @@ export type OrganizationUpdateOneWithoutDeploymentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutDeploymentsInput, Prisma.OrganizationUpdateWithoutDeploymentsInput>, Prisma.OrganizationUncheckedUpdateWithoutDeploymentsInput>
 }
 
+export type OrganizationCreateNestedOneWithoutWeatherStationsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutWeatherStationsInput, Prisma.OrganizationUncheckedCreateWithoutWeatherStationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutWeatherStationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutWeatherStationsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutWeatherStationsInput, Prisma.OrganizationUncheckedCreateWithoutWeatherStationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutWeatherStationsInput
+  upsert?: Prisma.OrganizationUpsertWithoutWeatherStationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutWeatherStationsInput, Prisma.OrganizationUpdateWithoutWeatherStationsInput>, Prisma.OrganizationUncheckedUpdateWithoutWeatherStationsInput>
+}
+
+export type OrganizationCreateNestedOneWithoutEnergyScenariosInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutEnergyScenariosInput, Prisma.OrganizationUncheckedCreateWithoutEnergyScenariosInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutEnergyScenariosInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutEnergyScenariosNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutEnergyScenariosInput, Prisma.OrganizationUncheckedCreateWithoutEnergyScenariosInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutEnergyScenariosInput
+  upsert?: Prisma.OrganizationUpsertWithoutEnergyScenariosInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutEnergyScenariosInput, Prisma.OrganizationUpdateWithoutEnergyScenariosInput>, Prisma.OrganizationUncheckedUpdateWithoutEnergyScenariosInput>
+}
+
 export type OrganizationCreateWithoutUsersInput = {
   id?: string
   seqNo: number
@@ -620,6 +662,8 @@ export type OrganizationCreateWithoutUsersInput = {
   buildings?: Prisma.BuildingCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   deployments?: Prisma.DeploymentCreateNestedManyWithoutOrganizationInput
+  weatherStations?: Prisma.WeatherStationCreateNestedManyWithoutOrganizationInput
+  energyScenarios?: Prisma.EnergyScenarioCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutUsersInput = {
@@ -637,6 +681,8 @@ export type OrganizationUncheckedCreateWithoutUsersInput = {
   buildings?: Prisma.BuildingUncheckedCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   deployments?: Prisma.DeploymentUncheckedCreateNestedManyWithoutOrganizationInput
+  weatherStations?: Prisma.WeatherStationUncheckedCreateNestedManyWithoutOrganizationInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutUsersInput = {
@@ -670,6 +716,8 @@ export type OrganizationUpdateWithoutUsersInput = {
   buildings?: Prisma.BuildingUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   deployments?: Prisma.DeploymentUpdateManyWithoutOrganizationNestedInput
+  weatherStations?: Prisma.WeatherStationUpdateManyWithoutOrganizationNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutUsersInput = {
@@ -687,6 +735,8 @@ export type OrganizationUncheckedUpdateWithoutUsersInput = {
   buildings?: Prisma.BuildingUncheckedUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   deployments?: Prisma.DeploymentUncheckedUpdateManyWithoutOrganizationNestedInput
+  weatherStations?: Prisma.WeatherStationUncheckedUpdateManyWithoutOrganizationNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutBuildingsInput = {
@@ -704,6 +754,8 @@ export type OrganizationCreateWithoutBuildingsInput = {
   users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
   deployments?: Prisma.DeploymentCreateNestedManyWithoutOrganizationInput
+  weatherStations?: Prisma.WeatherStationCreateNestedManyWithoutOrganizationInput
+  energyScenarios?: Prisma.EnergyScenarioCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutBuildingsInput = {
@@ -721,6 +773,8 @@ export type OrganizationUncheckedCreateWithoutBuildingsInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
   deployments?: Prisma.DeploymentUncheckedCreateNestedManyWithoutOrganizationInput
+  weatherStations?: Prisma.WeatherStationUncheckedCreateNestedManyWithoutOrganizationInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutBuildingsInput = {
@@ -754,6 +808,8 @@ export type OrganizationUpdateWithoutBuildingsInput = {
   users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
   deployments?: Prisma.DeploymentUpdateManyWithoutOrganizationNestedInput
+  weatherStations?: Prisma.WeatherStationUpdateManyWithoutOrganizationNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutBuildingsInput = {
@@ -771,6 +827,8 @@ export type OrganizationUncheckedUpdateWithoutBuildingsInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
   deployments?: Prisma.DeploymentUncheckedUpdateManyWithoutOrganizationNestedInput
+  weatherStations?: Prisma.WeatherStationUncheckedUpdateManyWithoutOrganizationNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutAuditLogsInput = {
@@ -788,6 +846,8 @@ export type OrganizationCreateWithoutAuditLogsInput = {
   users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
   buildings?: Prisma.BuildingCreateNestedManyWithoutOrganizationInput
   deployments?: Prisma.DeploymentCreateNestedManyWithoutOrganizationInput
+  weatherStations?: Prisma.WeatherStationCreateNestedManyWithoutOrganizationInput
+  energyScenarios?: Prisma.EnergyScenarioCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutAuditLogsInput = {
@@ -805,6 +865,8 @@ export type OrganizationUncheckedCreateWithoutAuditLogsInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
   buildings?: Prisma.BuildingUncheckedCreateNestedManyWithoutOrganizationInput
   deployments?: Prisma.DeploymentUncheckedCreateNestedManyWithoutOrganizationInput
+  weatherStations?: Prisma.WeatherStationUncheckedCreateNestedManyWithoutOrganizationInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutAuditLogsInput = {
@@ -838,6 +900,8 @@ export type OrganizationUpdateWithoutAuditLogsInput = {
   users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
   buildings?: Prisma.BuildingUpdateManyWithoutOrganizationNestedInput
   deployments?: Prisma.DeploymentUpdateManyWithoutOrganizationNestedInput
+  weatherStations?: Prisma.WeatherStationUpdateManyWithoutOrganizationNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutAuditLogsInput = {
@@ -855,6 +919,8 @@ export type OrganizationUncheckedUpdateWithoutAuditLogsInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
   buildings?: Prisma.BuildingUncheckedUpdateManyWithoutOrganizationNestedInput
   deployments?: Prisma.DeploymentUncheckedUpdateManyWithoutOrganizationNestedInput
+  weatherStations?: Prisma.WeatherStationUncheckedUpdateManyWithoutOrganizationNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutDeploymentsInput = {
@@ -872,6 +938,8 @@ export type OrganizationCreateWithoutDeploymentsInput = {
   users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
   buildings?: Prisma.BuildingCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+  weatherStations?: Prisma.WeatherStationCreateNestedManyWithoutOrganizationInput
+  energyScenarios?: Prisma.EnergyScenarioCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutDeploymentsInput = {
@@ -889,6 +957,8 @@ export type OrganizationUncheckedCreateWithoutDeploymentsInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
   buildings?: Prisma.BuildingUncheckedCreateNestedManyWithoutOrganizationInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+  weatherStations?: Prisma.WeatherStationUncheckedCreateNestedManyWithoutOrganizationInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutDeploymentsInput = {
@@ -922,6 +992,8 @@ export type OrganizationUpdateWithoutDeploymentsInput = {
   users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
   buildings?: Prisma.BuildingUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+  weatherStations?: Prisma.WeatherStationUpdateManyWithoutOrganizationNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutDeploymentsInput = {
@@ -939,6 +1011,192 @@ export type OrganizationUncheckedUpdateWithoutDeploymentsInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
   buildings?: Prisma.BuildingUncheckedUpdateManyWithoutOrganizationNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  weatherStations?: Prisma.WeatherStationUncheckedUpdateManyWithoutOrganizationNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutWeatherStationsInput = {
+  id?: string
+  seqNo: number
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
+  buildings?: Prisma.BuildingCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+  deployments?: Prisma.DeploymentCreateNestedManyWithoutOrganizationInput
+  energyScenarios?: Prisma.EnergyScenarioCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutWeatherStationsInput = {
+  id?: string
+  seqNo: number
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
+  buildings?: Prisma.BuildingUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+  deployments?: Prisma.DeploymentUncheckedCreateNestedManyWithoutOrganizationInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutWeatherStationsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutWeatherStationsInput, Prisma.OrganizationUncheckedCreateWithoutWeatherStationsInput>
+}
+
+export type OrganizationUpsertWithoutWeatherStationsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutWeatherStationsInput, Prisma.OrganizationUncheckedUpdateWithoutWeatherStationsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutWeatherStationsInput, Prisma.OrganizationUncheckedCreateWithoutWeatherStationsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutWeatherStationsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutWeatherStationsInput, Prisma.OrganizationUncheckedUpdateWithoutWeatherStationsInput>
+}
+
+export type OrganizationUpdateWithoutWeatherStationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
+  buildings?: Prisma.BuildingUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+  deployments?: Prisma.DeploymentUpdateManyWithoutOrganizationNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutWeatherStationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
+  buildings?: Prisma.BuildingUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  deployments?: Prisma.DeploymentUncheckedUpdateManyWithoutOrganizationNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutEnergyScenariosInput = {
+  id?: string
+  seqNo: number
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
+  buildings?: Prisma.BuildingCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutOrganizationInput
+  deployments?: Prisma.DeploymentCreateNestedManyWithoutOrganizationInput
+  weatherStations?: Prisma.WeatherStationCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutEnergyScenariosInput = {
+  id?: string
+  seqNo: number
+  name: string
+  slug: string
+  logo?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
+  buildings?: Prisma.BuildingUncheckedCreateNestedManyWithoutOrganizationInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutOrganizationInput
+  deployments?: Prisma.DeploymentUncheckedCreateNestedManyWithoutOrganizationInput
+  weatherStations?: Prisma.WeatherStationUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutEnergyScenariosInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutEnergyScenariosInput, Prisma.OrganizationUncheckedCreateWithoutEnergyScenariosInput>
+}
+
+export type OrganizationUpsertWithoutEnergyScenariosInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutEnergyScenariosInput, Prisma.OrganizationUncheckedUpdateWithoutEnergyScenariosInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutEnergyScenariosInput, Prisma.OrganizationUncheckedCreateWithoutEnergyScenariosInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutEnergyScenariosInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutEnergyScenariosInput, Prisma.OrganizationUncheckedUpdateWithoutEnergyScenariosInput>
+}
+
+export type OrganizationUpdateWithoutEnergyScenariosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
+  buildings?: Prisma.BuildingUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutOrganizationNestedInput
+  deployments?: Prisma.DeploymentUpdateManyWithoutOrganizationNestedInput
+  weatherStations?: Prisma.WeatherStationUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutEnergyScenariosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
+  buildings?: Prisma.BuildingUncheckedUpdateManyWithoutOrganizationNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutOrganizationNestedInput
+  deployments?: Prisma.DeploymentUncheckedUpdateManyWithoutOrganizationNestedInput
+  weatherStations?: Prisma.WeatherStationUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -951,6 +1209,8 @@ export type OrganizationCountOutputType = {
   buildings: number
   auditLogs: number
   deployments: number
+  weatherStations: number
+  energyScenarios: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -958,6 +1218,8 @@ export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   buildings?: boolean | OrganizationCountOutputTypeCountBuildingsArgs
   auditLogs?: boolean | OrganizationCountOutputTypeCountAuditLogsArgs
   deployments?: boolean | OrganizationCountOutputTypeCountDeploymentsArgs
+  weatherStations?: boolean | OrganizationCountOutputTypeCountWeatherStationsArgs
+  energyScenarios?: boolean | OrganizationCountOutputTypeCountEnergyScenariosArgs
 }
 
 /**
@@ -998,6 +1260,20 @@ export type OrganizationCountOutputTypeCountDeploymentsArgs<ExtArgs extends runt
   where?: Prisma.DeploymentWhereInput
 }
 
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountWeatherStationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WeatherStationWhereInput
+}
+
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountEnergyScenariosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EnergyScenarioWhereInput
+}
+
 
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1015,6 +1291,8 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   buildings?: boolean | Prisma.Organization$buildingsArgs<ExtArgs>
   auditLogs?: boolean | Prisma.Organization$auditLogsArgs<ExtArgs>
   deployments?: boolean | Prisma.Organization$deploymentsArgs<ExtArgs>
+  weatherStations?: boolean | Prisma.Organization$weatherStationsArgs<ExtArgs>
+  energyScenarios?: boolean | Prisma.Organization$energyScenariosArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -1066,6 +1344,8 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   buildings?: boolean | Prisma.Organization$buildingsArgs<ExtArgs>
   auditLogs?: boolean | Prisma.Organization$auditLogsArgs<ExtArgs>
   deployments?: boolean | Prisma.Organization$deploymentsArgs<ExtArgs>
+  weatherStations?: boolean | Prisma.Organization$weatherStationsArgs<ExtArgs>
+  energyScenarios?: boolean | Prisma.Organization$energyScenariosArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1078,6 +1358,8 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     buildings: Prisma.$BuildingPayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
     deployments: Prisma.$DeploymentPayload<ExtArgs>[]
+    weatherStations: Prisma.$WeatherStationPayload<ExtArgs>[]
+    energyScenarios: Prisma.$EnergyScenarioPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1489,6 +1771,8 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   buildings<T extends Prisma.Organization$buildingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$buildingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BuildingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.Organization$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   deployments<T extends Prisma.Organization$deploymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$deploymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeploymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  weatherStations<T extends Prisma.Organization$weatherStationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$weatherStationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WeatherStationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  energyScenarios<T extends Prisma.Organization$energyScenariosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$energyScenariosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnergyScenarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2015,6 +2299,54 @@ export type Organization$deploymentsArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.DeploymentScalarFieldEnum | Prisma.DeploymentScalarFieldEnum[]
+}
+
+/**
+ * Organization.weatherStations
+ */
+export type Organization$weatherStationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WeatherStation
+   */
+  select?: Prisma.WeatherStationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WeatherStation
+   */
+  omit?: Prisma.WeatherStationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WeatherStationInclude<ExtArgs> | null
+  where?: Prisma.WeatherStationWhereInput
+  orderBy?: Prisma.WeatherStationOrderByWithRelationInput | Prisma.WeatherStationOrderByWithRelationInput[]
+  cursor?: Prisma.WeatherStationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WeatherStationScalarFieldEnum | Prisma.WeatherStationScalarFieldEnum[]
+}
+
+/**
+ * Organization.energyScenarios
+ */
+export type Organization$energyScenariosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EnergyScenario
+   */
+  select?: Prisma.EnergyScenarioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EnergyScenario
+   */
+  omit?: Prisma.EnergyScenarioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EnergyScenarioInclude<ExtArgs> | null
+  where?: Prisma.EnergyScenarioWhereInput
+  orderBy?: Prisma.EnergyScenarioOrderByWithRelationInput | Prisma.EnergyScenarioOrderByWithRelationInput[]
+  cursor?: Prisma.EnergyScenarioWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EnergyScenarioScalarFieldEnum | Prisma.EnergyScenarioScalarFieldEnum[]
 }
 
 /**

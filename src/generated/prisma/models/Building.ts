@@ -306,6 +306,8 @@ export type BuildingWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Building"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   floors?: Prisma.FloorListRelationFilter
+  weatherStations?: Prisma.WeatherStationListRelationFilter
+  energyScenarios?: Prisma.EnergyScenarioListRelationFilter
 }
 
 export type BuildingOrderByWithRelationInput = {
@@ -325,6 +327,8 @@ export type BuildingOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
   floors?: Prisma.FloorOrderByRelationAggregateInput
+  weatherStations?: Prisma.WeatherStationOrderByRelationAggregateInput
+  energyScenarios?: Prisma.EnergyScenarioOrderByRelationAggregateInput
 }
 
 export type BuildingWhereUniqueInput = Prisma.AtLeast<{
@@ -348,6 +352,8 @@ export type BuildingWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Building"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
   floors?: Prisma.FloorListRelationFilter
+  weatherStations?: Prisma.WeatherStationListRelationFilter
+  energyScenarios?: Prisma.EnergyScenarioListRelationFilter
 }, "id" | "seqNo" | "organizationId_name">
 
 export type BuildingOrderByWithAggregationInput = {
@@ -408,6 +414,8 @@ export type BuildingCreateInput = {
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBuildingsInput
   floors?: Prisma.FloorCreateNestedManyWithoutBuildingInput
+  weatherStations?: Prisma.WeatherStationCreateNestedManyWithoutBuildingInput
+  energyScenarios?: Prisma.EnergyScenarioCreateNestedManyWithoutBuildingInput
 }
 
 export type BuildingUncheckedCreateInput = {
@@ -426,6 +434,8 @@ export type BuildingUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   floors?: Prisma.FloorUncheckedCreateNestedManyWithoutBuildingInput
+  weatherStations?: Prisma.WeatherStationUncheckedCreateNestedManyWithoutBuildingInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedCreateNestedManyWithoutBuildingInput
 }
 
 export type BuildingUpdateInput = {
@@ -444,6 +454,8 @@ export type BuildingUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBuildingsNestedInput
   floors?: Prisma.FloorUpdateManyWithoutBuildingNestedInput
+  weatherStations?: Prisma.WeatherStationUpdateManyWithoutBuildingNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUpdateManyWithoutBuildingNestedInput
 }
 
 export type BuildingUncheckedUpdateInput = {
@@ -462,6 +474,8 @@ export type BuildingUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   floors?: Prisma.FloorUncheckedUpdateManyWithoutBuildingNestedInput
+  weatherStations?: Prisma.WeatherStationUncheckedUpdateManyWithoutBuildingNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedUpdateManyWithoutBuildingNestedInput
 }
 
 export type BuildingCreateManyInput = {
@@ -601,6 +615,11 @@ export type BuildingScalarRelationFilter = {
   isNot?: Prisma.BuildingWhereInput
 }
 
+export type BuildingNullableScalarRelationFilter = {
+  is?: Prisma.BuildingWhereInput | null
+  isNot?: Prisma.BuildingWhereInput | null
+}
+
 export type BuildingCreateNestedManyWithoutOrganizationInput = {
   create?: Prisma.XOR<Prisma.BuildingCreateWithoutOrganizationInput, Prisma.BuildingUncheckedCreateWithoutOrganizationInput> | Prisma.BuildingCreateWithoutOrganizationInput[] | Prisma.BuildingUncheckedCreateWithoutOrganizationInput[]
   connectOrCreate?: Prisma.BuildingCreateOrConnectWithoutOrganizationInput | Prisma.BuildingCreateOrConnectWithoutOrganizationInput[]
@@ -665,6 +684,36 @@ export type BuildingUpdateOneRequiredWithoutFloorsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.BuildingUpdateToOneWithWhereWithoutFloorsInput, Prisma.BuildingUpdateWithoutFloorsInput>, Prisma.BuildingUncheckedUpdateWithoutFloorsInput>
 }
 
+export type BuildingCreateNestedOneWithoutWeatherStationsInput = {
+  create?: Prisma.XOR<Prisma.BuildingCreateWithoutWeatherStationsInput, Prisma.BuildingUncheckedCreateWithoutWeatherStationsInput>
+  connectOrCreate?: Prisma.BuildingCreateOrConnectWithoutWeatherStationsInput
+  connect?: Prisma.BuildingWhereUniqueInput
+}
+
+export type BuildingUpdateOneWithoutWeatherStationsNestedInput = {
+  create?: Prisma.XOR<Prisma.BuildingCreateWithoutWeatherStationsInput, Prisma.BuildingUncheckedCreateWithoutWeatherStationsInput>
+  connectOrCreate?: Prisma.BuildingCreateOrConnectWithoutWeatherStationsInput
+  upsert?: Prisma.BuildingUpsertWithoutWeatherStationsInput
+  disconnect?: Prisma.BuildingWhereInput | boolean
+  delete?: Prisma.BuildingWhereInput | boolean
+  connect?: Prisma.BuildingWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BuildingUpdateToOneWithWhereWithoutWeatherStationsInput, Prisma.BuildingUpdateWithoutWeatherStationsInput>, Prisma.BuildingUncheckedUpdateWithoutWeatherStationsInput>
+}
+
+export type BuildingCreateNestedOneWithoutEnergyScenariosInput = {
+  create?: Prisma.XOR<Prisma.BuildingCreateWithoutEnergyScenariosInput, Prisma.BuildingUncheckedCreateWithoutEnergyScenariosInput>
+  connectOrCreate?: Prisma.BuildingCreateOrConnectWithoutEnergyScenariosInput
+  connect?: Prisma.BuildingWhereUniqueInput
+}
+
+export type BuildingUpdateOneRequiredWithoutEnergyScenariosNestedInput = {
+  create?: Prisma.XOR<Prisma.BuildingCreateWithoutEnergyScenariosInput, Prisma.BuildingUncheckedCreateWithoutEnergyScenariosInput>
+  connectOrCreate?: Prisma.BuildingCreateOrConnectWithoutEnergyScenariosInput
+  upsert?: Prisma.BuildingUpsertWithoutEnergyScenariosInput
+  connect?: Prisma.BuildingWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BuildingUpdateToOneWithWhereWithoutEnergyScenariosInput, Prisma.BuildingUpdateWithoutEnergyScenariosInput>, Prisma.BuildingUncheckedUpdateWithoutEnergyScenariosInput>
+}
+
 export type BuildingCreateWithoutOrganizationInput = {
   id?: string
   seqNo: number
@@ -680,6 +729,8 @@ export type BuildingCreateWithoutOrganizationInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   floors?: Prisma.FloorCreateNestedManyWithoutBuildingInput
+  weatherStations?: Prisma.WeatherStationCreateNestedManyWithoutBuildingInput
+  energyScenarios?: Prisma.EnergyScenarioCreateNestedManyWithoutBuildingInput
 }
 
 export type BuildingUncheckedCreateWithoutOrganizationInput = {
@@ -697,6 +748,8 @@ export type BuildingUncheckedCreateWithoutOrganizationInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   floors?: Prisma.FloorUncheckedCreateNestedManyWithoutBuildingInput
+  weatherStations?: Prisma.WeatherStationUncheckedCreateNestedManyWithoutBuildingInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedCreateNestedManyWithoutBuildingInput
 }
 
 export type BuildingCreateOrConnectWithoutOrganizationInput = {
@@ -760,6 +813,8 @@ export type BuildingCreateWithoutFloorsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutBuildingsInput
+  weatherStations?: Prisma.WeatherStationCreateNestedManyWithoutBuildingInput
+  energyScenarios?: Prisma.EnergyScenarioCreateNestedManyWithoutBuildingInput
 }
 
 export type BuildingUncheckedCreateWithoutFloorsInput = {
@@ -777,6 +832,8 @@ export type BuildingUncheckedCreateWithoutFloorsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  weatherStations?: Prisma.WeatherStationUncheckedCreateNestedManyWithoutBuildingInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedCreateNestedManyWithoutBuildingInput
 }
 
 export type BuildingCreateOrConnectWithoutFloorsInput = {
@@ -810,6 +867,8 @@ export type BuildingUpdateWithoutFloorsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutBuildingsNestedInput
+  weatherStations?: Prisma.WeatherStationUpdateManyWithoutBuildingNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUpdateManyWithoutBuildingNestedInput
 }
 
 export type BuildingUncheckedUpdateWithoutFloorsInput = {
@@ -827,6 +886,192 @@ export type BuildingUncheckedUpdateWithoutFloorsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weatherStations?: Prisma.WeatherStationUncheckedUpdateManyWithoutBuildingNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedUpdateManyWithoutBuildingNestedInput
+}
+
+export type BuildingCreateWithoutWeatherStationsInput = {
+  id?: string
+  seqNo: number
+  buildingType?: string | null
+  grossFloorArea?: number | null
+  netFloorArea?: number | null
+  name: string
+  description?: string | null
+  latitude?: number | null
+  longitude?: number | null
+  timezone?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutBuildingsInput
+  floors?: Prisma.FloorCreateNestedManyWithoutBuildingInput
+  energyScenarios?: Prisma.EnergyScenarioCreateNestedManyWithoutBuildingInput
+}
+
+export type BuildingUncheckedCreateWithoutWeatherStationsInput = {
+  id?: string
+  seqNo: number
+  buildingType?: string | null
+  grossFloorArea?: number | null
+  netFloorArea?: number | null
+  name: string
+  description?: string | null
+  latitude?: number | null
+  longitude?: number | null
+  timezone?: string | null
+  organizationId: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  floors?: Prisma.FloorUncheckedCreateNestedManyWithoutBuildingInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedCreateNestedManyWithoutBuildingInput
+}
+
+export type BuildingCreateOrConnectWithoutWeatherStationsInput = {
+  where: Prisma.BuildingWhereUniqueInput
+  create: Prisma.XOR<Prisma.BuildingCreateWithoutWeatherStationsInput, Prisma.BuildingUncheckedCreateWithoutWeatherStationsInput>
+}
+
+export type BuildingUpsertWithoutWeatherStationsInput = {
+  update: Prisma.XOR<Prisma.BuildingUpdateWithoutWeatherStationsInput, Prisma.BuildingUncheckedUpdateWithoutWeatherStationsInput>
+  create: Prisma.XOR<Prisma.BuildingCreateWithoutWeatherStationsInput, Prisma.BuildingUncheckedCreateWithoutWeatherStationsInput>
+  where?: Prisma.BuildingWhereInput
+}
+
+export type BuildingUpdateToOneWithWhereWithoutWeatherStationsInput = {
+  where?: Prisma.BuildingWhereInput
+  data: Prisma.XOR<Prisma.BuildingUpdateWithoutWeatherStationsInput, Prisma.BuildingUncheckedUpdateWithoutWeatherStationsInput>
+}
+
+export type BuildingUpdateWithoutWeatherStationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grossFloorArea?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  netFloorArea?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutBuildingsNestedInput
+  floors?: Prisma.FloorUpdateManyWithoutBuildingNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUpdateManyWithoutBuildingNestedInput
+}
+
+export type BuildingUncheckedUpdateWithoutWeatherStationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grossFloorArea?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  netFloorArea?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  floors?: Prisma.FloorUncheckedUpdateManyWithoutBuildingNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedUpdateManyWithoutBuildingNestedInput
+}
+
+export type BuildingCreateWithoutEnergyScenariosInput = {
+  id?: string
+  seqNo: number
+  buildingType?: string | null
+  grossFloorArea?: number | null
+  netFloorArea?: number | null
+  name: string
+  description?: string | null
+  latitude?: number | null
+  longitude?: number | null
+  timezone?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  organization: Prisma.OrganizationCreateNestedOneWithoutBuildingsInput
+  floors?: Prisma.FloorCreateNestedManyWithoutBuildingInput
+  weatherStations?: Prisma.WeatherStationCreateNestedManyWithoutBuildingInput
+}
+
+export type BuildingUncheckedCreateWithoutEnergyScenariosInput = {
+  id?: string
+  seqNo: number
+  buildingType?: string | null
+  grossFloorArea?: number | null
+  netFloorArea?: number | null
+  name: string
+  description?: string | null
+  latitude?: number | null
+  longitude?: number | null
+  timezone?: string | null
+  organizationId: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  floors?: Prisma.FloorUncheckedCreateNestedManyWithoutBuildingInput
+  weatherStations?: Prisma.WeatherStationUncheckedCreateNestedManyWithoutBuildingInput
+}
+
+export type BuildingCreateOrConnectWithoutEnergyScenariosInput = {
+  where: Prisma.BuildingWhereUniqueInput
+  create: Prisma.XOR<Prisma.BuildingCreateWithoutEnergyScenariosInput, Prisma.BuildingUncheckedCreateWithoutEnergyScenariosInput>
+}
+
+export type BuildingUpsertWithoutEnergyScenariosInput = {
+  update: Prisma.XOR<Prisma.BuildingUpdateWithoutEnergyScenariosInput, Prisma.BuildingUncheckedUpdateWithoutEnergyScenariosInput>
+  create: Prisma.XOR<Prisma.BuildingCreateWithoutEnergyScenariosInput, Prisma.BuildingUncheckedCreateWithoutEnergyScenariosInput>
+  where?: Prisma.BuildingWhereInput
+}
+
+export type BuildingUpdateToOneWithWhereWithoutEnergyScenariosInput = {
+  where?: Prisma.BuildingWhereInput
+  data: Prisma.XOR<Prisma.BuildingUpdateWithoutEnergyScenariosInput, Prisma.BuildingUncheckedUpdateWithoutEnergyScenariosInput>
+}
+
+export type BuildingUpdateWithoutEnergyScenariosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grossFloorArea?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  netFloorArea?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.OrganizationUpdateOneRequiredWithoutBuildingsNestedInput
+  floors?: Prisma.FloorUpdateManyWithoutBuildingNestedInput
+  weatherStations?: Prisma.WeatherStationUpdateManyWithoutBuildingNestedInput
+}
+
+export type BuildingUncheckedUpdateWithoutEnergyScenariosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  buildingType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  grossFloorArea?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  netFloorArea?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  latitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  longitude?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  floors?: Prisma.FloorUncheckedUpdateManyWithoutBuildingNestedInput
+  weatherStations?: Prisma.WeatherStationUncheckedUpdateManyWithoutBuildingNestedInput
 }
 
 export type BuildingCreateManyOrganizationInput = {
@@ -860,6 +1105,8 @@ export type BuildingUpdateWithoutOrganizationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   floors?: Prisma.FloorUpdateManyWithoutBuildingNestedInput
+  weatherStations?: Prisma.WeatherStationUpdateManyWithoutBuildingNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUpdateManyWithoutBuildingNestedInput
 }
 
 export type BuildingUncheckedUpdateWithoutOrganizationInput = {
@@ -877,6 +1124,8 @@ export type BuildingUncheckedUpdateWithoutOrganizationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   floors?: Prisma.FloorUncheckedUpdateManyWithoutBuildingNestedInput
+  weatherStations?: Prisma.WeatherStationUncheckedUpdateManyWithoutBuildingNestedInput
+  energyScenarios?: Prisma.EnergyScenarioUncheckedUpdateManyWithoutBuildingNestedInput
 }
 
 export type BuildingUncheckedUpdateManyWithoutOrganizationInput = {
@@ -902,10 +1151,14 @@ export type BuildingUncheckedUpdateManyWithoutOrganizationInput = {
 
 export type BuildingCountOutputType = {
   floors: number
+  weatherStations: number
+  energyScenarios: number
 }
 
 export type BuildingCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   floors?: boolean | BuildingCountOutputTypeCountFloorsArgs
+  weatherStations?: boolean | BuildingCountOutputTypeCountWeatherStationsArgs
+  energyScenarios?: boolean | BuildingCountOutputTypeCountEnergyScenariosArgs
 }
 
 /**
@@ -923,6 +1176,20 @@ export type BuildingCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
  */
 export type BuildingCountOutputTypeCountFloorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.FloorWhereInput
+}
+
+/**
+ * BuildingCountOutputType without action
+ */
+export type BuildingCountOutputTypeCountWeatherStationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WeatherStationWhereInput
+}
+
+/**
+ * BuildingCountOutputType without action
+ */
+export type BuildingCountOutputTypeCountEnergyScenariosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EnergyScenarioWhereInput
 }
 
 
@@ -943,6 +1210,8 @@ export type BuildingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   updatedAt?: boolean
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   floors?: boolean | Prisma.Building$floorsArgs<ExtArgs>
+  weatherStations?: boolean | Prisma.Building$weatherStationsArgs<ExtArgs>
+  energyScenarios?: boolean | Prisma.Building$energyScenariosArgs<ExtArgs>
   _count?: boolean | Prisma.BuildingCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["building"]>
 
@@ -1003,6 +1272,8 @@ export type BuildingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type BuildingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
   floors?: boolean | Prisma.Building$floorsArgs<ExtArgs>
+  weatherStations?: boolean | Prisma.Building$weatherStationsArgs<ExtArgs>
+  energyScenarios?: boolean | Prisma.Building$energyScenariosArgs<ExtArgs>
   _count?: boolean | Prisma.BuildingCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BuildingIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1017,6 +1288,8 @@ export type $BuildingPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
     floors: Prisma.$FloorPayload<ExtArgs>[]
+    weatherStations: Prisma.$WeatherStationPayload<ExtArgs>[]
+    energyScenarios: Prisma.$EnergyScenarioPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1429,6 +1702,8 @@ export interface Prisma__BuildingClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   floors<T extends Prisma.Building$floorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Building$floorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FloorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  weatherStations<T extends Prisma.Building$weatherStationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Building$weatherStationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WeatherStationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  energyScenarios<T extends Prisma.Building$energyScenariosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Building$energyScenariosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnergyScenarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1894,6 +2169,54 @@ export type Building$floorsArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.FloorScalarFieldEnum | Prisma.FloorScalarFieldEnum[]
+}
+
+/**
+ * Building.weatherStations
+ */
+export type Building$weatherStationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WeatherStation
+   */
+  select?: Prisma.WeatherStationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WeatherStation
+   */
+  omit?: Prisma.WeatherStationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WeatherStationInclude<ExtArgs> | null
+  where?: Prisma.WeatherStationWhereInput
+  orderBy?: Prisma.WeatherStationOrderByWithRelationInput | Prisma.WeatherStationOrderByWithRelationInput[]
+  cursor?: Prisma.WeatherStationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WeatherStationScalarFieldEnum | Prisma.WeatherStationScalarFieldEnum[]
+}
+
+/**
+ * Building.energyScenarios
+ */
+export type Building$energyScenariosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EnergyScenario
+   */
+  select?: Prisma.EnergyScenarioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EnergyScenario
+   */
+  omit?: Prisma.EnergyScenarioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EnergyScenarioInclude<ExtArgs> | null
+  where?: Prisma.EnergyScenarioWhereInput
+  orderBy?: Prisma.EnergyScenarioOrderByWithRelationInput | Prisma.EnergyScenarioOrderByWithRelationInput[]
+  cursor?: Prisma.EnergyScenarioWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EnergyScenarioScalarFieldEnum | Prisma.EnergyScenarioScalarFieldEnum[]
 }
 
 /**

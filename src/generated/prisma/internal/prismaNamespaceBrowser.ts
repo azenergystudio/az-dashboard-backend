@@ -76,7 +76,13 @@ export const ModelName = {
   AuditLog: 'AuditLog',
   UserSession: 'UserSession',
   Deployment: 'Deployment',
-  PlatformConfiguration: 'PlatformConfiguration'
+  PlatformConfiguration: 'PlatformConfiguration',
+  TelemetryReading: 'TelemetryReading',
+  WeatherStation: 'WeatherStation',
+  WeatherReading: 'WeatherReading',
+  EnergyEndUse: 'EnergyEndUse',
+  EnergyScenario: 'EnergyScenario',
+  EnergyScenarioResult: 'EnergyScenarioResult'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -484,6 +490,103 @@ export const PlatformConfigurationScalarFieldEnum = {
 } as const
 
 export type PlatformConfigurationScalarFieldEnum = (typeof PlatformConfigurationScalarFieldEnum)[keyof typeof PlatformConfigurationScalarFieldEnum]
+
+
+export const TelemetryReadingScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  entityType: 'entityType',
+  deviceId: 'deviceId',
+  equipmentId: 'equipmentId',
+  parameterId: 'parameterId',
+  recordedAt: 'recordedAt',
+  value: 'value',
+  quality: 'quality',
+  source: 'source',
+  createdAt: 'createdAt'
+} as const
+
+export type TelemetryReadingScalarFieldEnum = (typeof TelemetryReadingScalarFieldEnum)[keyof typeof TelemetryReadingScalarFieldEnum]
+
+
+export const WeatherStationScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  name: 'name',
+  sourceName: 'sourceName',
+  sourceFile: 'sourceFile',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  organizationId: 'organizationId',
+  buildingId: 'buildingId',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WeatherStationScalarFieldEnum = (typeof WeatherStationScalarFieldEnum)[keyof typeof WeatherStationScalarFieldEnum]
+
+
+export const WeatherReadingScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  weatherStationId: 'weatherStationId',
+  parameterId: 'parameterId',
+  recordedAt: 'recordedAt',
+  value: 'value',
+  source: 'source',
+  createdAt: 'createdAt'
+} as const
+
+export type WeatherReadingScalarFieldEnum = (typeof WeatherReadingScalarFieldEnum)[keyof typeof WeatherReadingScalarFieldEnum]
+
+
+export const EnergyEndUseScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  name: 'name',
+  description: 'description',
+  unit: 'unit',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EnergyEndUseScalarFieldEnum = (typeof EnergyEndUseScalarFieldEnum)[keyof typeof EnergyEndUseScalarFieldEnum]
+
+
+export const EnergyScenarioScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  name: 'name',
+  scenarioType: 'scenarioType',
+  description: 'description',
+  organizationId: 'organizationId',
+  buildingId: 'buildingId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EnergyScenarioScalarFieldEnum = (typeof EnergyScenarioScalarFieldEnum)[keyof typeof EnergyScenarioScalarFieldEnum]
+
+
+export const EnergyScenarioResultScalarFieldEnum = {
+  id: 'id',
+  seqNo: 'seqNo',
+  scenarioId: 'scenarioId',
+  endUseId: 'endUseId',
+  recordedAt: 'recordedAt',
+  periodType: 'periodType',
+  value: 'value',
+  unit: 'unit',
+  source: 'source',
+  createdAt: 'createdAt'
+} as const
+
+export type EnergyScenarioResultScalarFieldEnum = (typeof EnergyScenarioResultScalarFieldEnum)[keyof typeof EnergyScenarioResultScalarFieldEnum]
 
 
 export const SortOrder = {

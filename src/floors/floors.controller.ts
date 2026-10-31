@@ -34,9 +34,9 @@ export class FloorsController {
   }
 
   @Get()
-  @Permissions(
-    PermissionsList.FLOORS_READ,
-  )
+  // @Permissions(
+  //   PermissionsList.FLOORS_READ,
+  // )
   findAll(
     @Query() query: FloorQueryDto,
   ) {
@@ -46,9 +46,9 @@ export class FloorsController {
   }
 
   @Get(':id')
-  @Permissions(
-    PermissionsList.FLOORS_READ,
-  )
+  // @Permissions(
+  //   PermissionsList.FLOORS_READ,
+  // )
   findOne(
     @Param('id') id: string,
   ) {

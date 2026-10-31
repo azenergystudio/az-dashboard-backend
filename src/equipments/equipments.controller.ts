@@ -29,13 +29,13 @@ export class EquipmentsController {
   }
 
   @Get()
-  @Permissions(PermissionsList.EQUIPMENTS_READ)
+  // @Permissions(PermissionsList.EQUIPMENTS_READ)
   findAll(@Query() query: EquipmentQueryDto) {
     return this.equipmentsService.findAll(query);
   }
 
   @Get(':id')
-  @Permissions(PermissionsList.EQUIPMENTS_READ)
+  // @Permissions(PermissionsList.EQUIPMENTS_READ)
   findOne(@Param('id') id: string) {
     return this.equipmentsService.findOne(id);
   }

@@ -169,3 +169,33 @@ export type Deployment = Prisma.DeploymentModel
  * 
  */
 export type PlatformConfiguration = Prisma.PlatformConfigurationModel
+/**
+ * Model TelemetryReading
+ * 
+ */
+export type TelemetryReading = Prisma.TelemetryReadingModel
+/**
+ * Model WeatherStation
+ * 
+ */
+export type WeatherStation = Prisma.WeatherStationModel
+/**
+ * Model WeatherReading
+ * 
+ */
+export type WeatherReading = Prisma.WeatherReadingModel
+/**
+ * Model EnergyEndUse
+ * 
+ */
+export type EnergyEndUse = Prisma.EnergyEndUseModel
+/**
+ * Model EnergyScenario
+ * 
+ */
+export type EnergyScenario = Prisma.EnergyScenarioModel
+/**
+ * Model EnergyScenarioResult
+ * 
+ */
+export type EnergyScenarioResult = Prisma.EnergyScenarioResultModel

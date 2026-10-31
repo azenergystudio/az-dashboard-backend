@@ -56,6 +56,7 @@ constructor(
 }
 
 async findAll(query: BuildingQueryDto) {
+  console.log('query', query);
   const prismaQuery =
     buildPrismaQuery(query, [
       'name',
@@ -96,6 +97,7 @@ async findAll(query: BuildingQueryDto) {
 }
 
 async findOne(id: string) {
+console.log('id', id);
   const building =
     await this.prisma.building.findUnique({
       where: {

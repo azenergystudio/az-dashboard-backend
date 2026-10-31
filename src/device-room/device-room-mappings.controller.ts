@@ -34,9 +34,9 @@ export class DeviceRoomMappingsController {
   }
 
   @Get()
-  @Permissions(
-    PermissionsList.DEVICES_READ,
-  )
+  // @Permissions(
+  //   PermissionsList.DEVICES_READ,
+  // )
   findAll(
     @Query()
     query: DeviceRoomMappingQueryDto,
@@ -45,9 +45,9 @@ export class DeviceRoomMappingsController {
   }
 
   @Get(':id')
-  @Permissions(
-    PermissionsList.DEVICES_READ,
-  )
+  // @Permissions(
+  //   PermissionsList.DEVICES_READ,
+  // )
   findOne(
     @Param('id') id: string,
   ) {

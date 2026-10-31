@@ -241,6 +241,8 @@ export type ParameterWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Parameter"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Parameter"> | Date | string
   historyModels?: Prisma.HistoryModelParameterListRelationFilter
+  telemetryReadings?: Prisma.TelemetryReadingListRelationFilter
+  weatherReadings?: Prisma.WeatherReadingListRelationFilter
 }
 
 export type ParameterOrderByWithRelationInput = {
@@ -253,6 +255,8 @@ export type ParameterOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   historyModels?: Prisma.HistoryModelParameterOrderByRelationAggregateInput
+  telemetryReadings?: Prisma.TelemetryReadingOrderByRelationAggregateInput
+  weatherReadings?: Prisma.WeatherReadingOrderByRelationAggregateInput
 }
 
 export type ParameterWhereUniqueInput = Prisma.AtLeast<{
@@ -268,6 +272,8 @@ export type ParameterWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Parameter"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Parameter"> | Date | string
   historyModels?: Prisma.HistoryModelParameterListRelationFilter
+  telemetryReadings?: Prisma.TelemetryReadingListRelationFilter
+  weatherReadings?: Prisma.WeatherReadingListRelationFilter
 }, "id" | "seqNo" | "name">
 
 export type ParameterOrderByWithAggregationInput = {
@@ -310,6 +316,8 @@ export type ParameterCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   historyModels?: Prisma.HistoryModelParameterCreateNestedManyWithoutParameterInput
+  telemetryReadings?: Prisma.TelemetryReadingCreateNestedManyWithoutParameterInput
+  weatherReadings?: Prisma.WeatherReadingCreateNestedManyWithoutParameterInput
 }
 
 export type ParameterUncheckedCreateInput = {
@@ -322,6 +330,8 @@ export type ParameterUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   historyModels?: Prisma.HistoryModelParameterUncheckedCreateNestedManyWithoutParameterInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedCreateNestedManyWithoutParameterInput
+  weatherReadings?: Prisma.WeatherReadingUncheckedCreateNestedManyWithoutParameterInput
 }
 
 export type ParameterUpdateInput = {
@@ -334,6 +344,8 @@ export type ParameterUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   historyModels?: Prisma.HistoryModelParameterUpdateManyWithoutParameterNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUpdateManyWithoutParameterNestedInput
+  weatherReadings?: Prisma.WeatherReadingUpdateManyWithoutParameterNestedInput
 }
 
 export type ParameterUncheckedUpdateInput = {
@@ -346,6 +358,8 @@ export type ParameterUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   historyModels?: Prisma.HistoryModelParameterUncheckedUpdateManyWithoutParameterNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedUpdateManyWithoutParameterNestedInput
+  weatherReadings?: Prisma.WeatherReadingUncheckedUpdateManyWithoutParameterNestedInput
 }
 
 export type ParameterCreateManyInput = {
@@ -441,6 +455,34 @@ export type ParameterUpdateOneRequiredWithoutHistoryModelsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ParameterUpdateToOneWithWhereWithoutHistoryModelsInput, Prisma.ParameterUpdateWithoutHistoryModelsInput>, Prisma.ParameterUncheckedUpdateWithoutHistoryModelsInput>
 }
 
+export type ParameterCreateNestedOneWithoutTelemetryReadingsInput = {
+  create?: Prisma.XOR<Prisma.ParameterCreateWithoutTelemetryReadingsInput, Prisma.ParameterUncheckedCreateWithoutTelemetryReadingsInput>
+  connectOrCreate?: Prisma.ParameterCreateOrConnectWithoutTelemetryReadingsInput
+  connect?: Prisma.ParameterWhereUniqueInput
+}
+
+export type ParameterUpdateOneRequiredWithoutTelemetryReadingsNestedInput = {
+  create?: Prisma.XOR<Prisma.ParameterCreateWithoutTelemetryReadingsInput, Prisma.ParameterUncheckedCreateWithoutTelemetryReadingsInput>
+  connectOrCreate?: Prisma.ParameterCreateOrConnectWithoutTelemetryReadingsInput
+  upsert?: Prisma.ParameterUpsertWithoutTelemetryReadingsInput
+  connect?: Prisma.ParameterWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ParameterUpdateToOneWithWhereWithoutTelemetryReadingsInput, Prisma.ParameterUpdateWithoutTelemetryReadingsInput>, Prisma.ParameterUncheckedUpdateWithoutTelemetryReadingsInput>
+}
+
+export type ParameterCreateNestedOneWithoutWeatherReadingsInput = {
+  create?: Prisma.XOR<Prisma.ParameterCreateWithoutWeatherReadingsInput, Prisma.ParameterUncheckedCreateWithoutWeatherReadingsInput>
+  connectOrCreate?: Prisma.ParameterCreateOrConnectWithoutWeatherReadingsInput
+  connect?: Prisma.ParameterWhereUniqueInput
+}
+
+export type ParameterUpdateOneRequiredWithoutWeatherReadingsNestedInput = {
+  create?: Prisma.XOR<Prisma.ParameterCreateWithoutWeatherReadingsInput, Prisma.ParameterUncheckedCreateWithoutWeatherReadingsInput>
+  connectOrCreate?: Prisma.ParameterCreateOrConnectWithoutWeatherReadingsInput
+  upsert?: Prisma.ParameterUpsertWithoutWeatherReadingsInput
+  connect?: Prisma.ParameterWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ParameterUpdateToOneWithWhereWithoutWeatherReadingsInput, Prisma.ParameterUpdateWithoutWeatherReadingsInput>, Prisma.ParameterUncheckedUpdateWithoutWeatherReadingsInput>
+}
+
 export type ParameterCreateWithoutHistoryModelsInput = {
   id?: string
   seqNo: number
@@ -450,6 +492,8 @@ export type ParameterCreateWithoutHistoryModelsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  telemetryReadings?: Prisma.TelemetryReadingCreateNestedManyWithoutParameterInput
+  weatherReadings?: Prisma.WeatherReadingCreateNestedManyWithoutParameterInput
 }
 
 export type ParameterUncheckedCreateWithoutHistoryModelsInput = {
@@ -461,6 +505,8 @@ export type ParameterUncheckedCreateWithoutHistoryModelsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedCreateNestedManyWithoutParameterInput
+  weatherReadings?: Prisma.WeatherReadingUncheckedCreateNestedManyWithoutParameterInput
 }
 
 export type ParameterCreateOrConnectWithoutHistoryModelsInput = {
@@ -488,6 +534,8 @@ export type ParameterUpdateWithoutHistoryModelsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  telemetryReadings?: Prisma.TelemetryReadingUpdateManyWithoutParameterNestedInput
+  weatherReadings?: Prisma.WeatherReadingUpdateManyWithoutParameterNestedInput
 }
 
 export type ParameterUncheckedUpdateWithoutHistoryModelsInput = {
@@ -499,6 +547,144 @@ export type ParameterUncheckedUpdateWithoutHistoryModelsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedUpdateManyWithoutParameterNestedInput
+  weatherReadings?: Prisma.WeatherReadingUncheckedUpdateManyWithoutParameterNestedInput
+}
+
+export type ParameterCreateWithoutTelemetryReadingsInput = {
+  id?: string
+  seqNo: number
+  name: string
+  unit?: string | null
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  historyModels?: Prisma.HistoryModelParameterCreateNestedManyWithoutParameterInput
+  weatherReadings?: Prisma.WeatherReadingCreateNestedManyWithoutParameterInput
+}
+
+export type ParameterUncheckedCreateWithoutTelemetryReadingsInput = {
+  id?: string
+  seqNo: number
+  name: string
+  unit?: string | null
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  historyModels?: Prisma.HistoryModelParameterUncheckedCreateNestedManyWithoutParameterInput
+  weatherReadings?: Prisma.WeatherReadingUncheckedCreateNestedManyWithoutParameterInput
+}
+
+export type ParameterCreateOrConnectWithoutTelemetryReadingsInput = {
+  where: Prisma.ParameterWhereUniqueInput
+  create: Prisma.XOR<Prisma.ParameterCreateWithoutTelemetryReadingsInput, Prisma.ParameterUncheckedCreateWithoutTelemetryReadingsInput>
+}
+
+export type ParameterUpsertWithoutTelemetryReadingsInput = {
+  update: Prisma.XOR<Prisma.ParameterUpdateWithoutTelemetryReadingsInput, Prisma.ParameterUncheckedUpdateWithoutTelemetryReadingsInput>
+  create: Prisma.XOR<Prisma.ParameterCreateWithoutTelemetryReadingsInput, Prisma.ParameterUncheckedCreateWithoutTelemetryReadingsInput>
+  where?: Prisma.ParameterWhereInput
+}
+
+export type ParameterUpdateToOneWithWhereWithoutTelemetryReadingsInput = {
+  where?: Prisma.ParameterWhereInput
+  data: Prisma.XOR<Prisma.ParameterUpdateWithoutTelemetryReadingsInput, Prisma.ParameterUncheckedUpdateWithoutTelemetryReadingsInput>
+}
+
+export type ParameterUpdateWithoutTelemetryReadingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  historyModels?: Prisma.HistoryModelParameterUpdateManyWithoutParameterNestedInput
+  weatherReadings?: Prisma.WeatherReadingUpdateManyWithoutParameterNestedInput
+}
+
+export type ParameterUncheckedUpdateWithoutTelemetryReadingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  historyModels?: Prisma.HistoryModelParameterUncheckedUpdateManyWithoutParameterNestedInput
+  weatherReadings?: Prisma.WeatherReadingUncheckedUpdateManyWithoutParameterNestedInput
+}
+
+export type ParameterCreateWithoutWeatherReadingsInput = {
+  id?: string
+  seqNo: number
+  name: string
+  unit?: string | null
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  historyModels?: Prisma.HistoryModelParameterCreateNestedManyWithoutParameterInput
+  telemetryReadings?: Prisma.TelemetryReadingCreateNestedManyWithoutParameterInput
+}
+
+export type ParameterUncheckedCreateWithoutWeatherReadingsInput = {
+  id?: string
+  seqNo: number
+  name: string
+  unit?: string | null
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  historyModels?: Prisma.HistoryModelParameterUncheckedCreateNestedManyWithoutParameterInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedCreateNestedManyWithoutParameterInput
+}
+
+export type ParameterCreateOrConnectWithoutWeatherReadingsInput = {
+  where: Prisma.ParameterWhereUniqueInput
+  create: Prisma.XOR<Prisma.ParameterCreateWithoutWeatherReadingsInput, Prisma.ParameterUncheckedCreateWithoutWeatherReadingsInput>
+}
+
+export type ParameterUpsertWithoutWeatherReadingsInput = {
+  update: Prisma.XOR<Prisma.ParameterUpdateWithoutWeatherReadingsInput, Prisma.ParameterUncheckedUpdateWithoutWeatherReadingsInput>
+  create: Prisma.XOR<Prisma.ParameterCreateWithoutWeatherReadingsInput, Prisma.ParameterUncheckedCreateWithoutWeatherReadingsInput>
+  where?: Prisma.ParameterWhereInput
+}
+
+export type ParameterUpdateToOneWithWhereWithoutWeatherReadingsInput = {
+  where?: Prisma.ParameterWhereInput
+  data: Prisma.XOR<Prisma.ParameterUpdateWithoutWeatherReadingsInput, Prisma.ParameterUncheckedUpdateWithoutWeatherReadingsInput>
+}
+
+export type ParameterUpdateWithoutWeatherReadingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  historyModels?: Prisma.HistoryModelParameterUpdateManyWithoutParameterNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUpdateManyWithoutParameterNestedInput
+}
+
+export type ParameterUncheckedUpdateWithoutWeatherReadingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  unit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  historyModels?: Prisma.HistoryModelParameterUncheckedUpdateManyWithoutParameterNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedUpdateManyWithoutParameterNestedInput
 }
 
 
@@ -508,10 +694,14 @@ export type ParameterUncheckedUpdateWithoutHistoryModelsInput = {
 
 export type ParameterCountOutputType = {
   historyModels: number
+  telemetryReadings: number
+  weatherReadings: number
 }
 
 export type ParameterCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   historyModels?: boolean | ParameterCountOutputTypeCountHistoryModelsArgs
+  telemetryReadings?: boolean | ParameterCountOutputTypeCountTelemetryReadingsArgs
+  weatherReadings?: boolean | ParameterCountOutputTypeCountWeatherReadingsArgs
 }
 
 /**
@@ -531,6 +721,20 @@ export type ParameterCountOutputTypeCountHistoryModelsArgs<ExtArgs extends runti
   where?: Prisma.HistoryModelParameterWhereInput
 }
 
+/**
+ * ParameterCountOutputType without action
+ */
+export type ParameterCountOutputTypeCountTelemetryReadingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TelemetryReadingWhereInput
+}
+
+/**
+ * ParameterCountOutputType without action
+ */
+export type ParameterCountOutputTypeCountWeatherReadingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WeatherReadingWhereInput
+}
+
 
 export type ParameterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -542,6 +746,8 @@ export type ParameterSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   createdAt?: boolean
   updatedAt?: boolean
   historyModels?: boolean | Prisma.Parameter$historyModelsArgs<ExtArgs>
+  telemetryReadings?: boolean | Prisma.Parameter$telemetryReadingsArgs<ExtArgs>
+  weatherReadings?: boolean | Prisma.Parameter$weatherReadingsArgs<ExtArgs>
   _count?: boolean | Prisma.ParameterCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["parameter"]>
 
@@ -581,6 +787,8 @@ export type ParameterSelectScalar = {
 export type ParameterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "seqNo" | "name" | "unit" | "description" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["parameter"]>
 export type ParameterInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   historyModels?: boolean | Prisma.Parameter$historyModelsArgs<ExtArgs>
+  telemetryReadings?: boolean | Prisma.Parameter$telemetryReadingsArgs<ExtArgs>
+  weatherReadings?: boolean | Prisma.Parameter$weatherReadingsArgs<ExtArgs>
   _count?: boolean | Prisma.ParameterCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ParameterIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -590,6 +798,8 @@ export type $ParameterPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   name: "Parameter"
   objects: {
     historyModels: Prisma.$HistoryModelParameterPayload<ExtArgs>[]
+    telemetryReadings: Prisma.$TelemetryReadingPayload<ExtArgs>[]
+    weatherReadings: Prisma.$WeatherReadingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -995,6 +1205,8 @@ readonly fields: ParameterFieldRefs;
 export interface Prisma__ParameterClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   historyModels<T extends Prisma.Parameter$historyModelsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Parameter$historyModelsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HistoryModelParameterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  telemetryReadings<T extends Prisma.Parameter$telemetryReadingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Parameter$telemetryReadingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TelemetryReadingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  weatherReadings<T extends Prisma.Parameter$weatherReadingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Parameter$weatherReadingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WeatherReadingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1446,6 +1658,54 @@ export type Parameter$historyModelsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.HistoryModelParameterScalarFieldEnum | Prisma.HistoryModelParameterScalarFieldEnum[]
+}
+
+/**
+ * Parameter.telemetryReadings
+ */
+export type Parameter$telemetryReadingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TelemetryReading
+   */
+  select?: Prisma.TelemetryReadingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TelemetryReading
+   */
+  omit?: Prisma.TelemetryReadingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TelemetryReadingInclude<ExtArgs> | null
+  where?: Prisma.TelemetryReadingWhereInput
+  orderBy?: Prisma.TelemetryReadingOrderByWithRelationInput | Prisma.TelemetryReadingOrderByWithRelationInput[]
+  cursor?: Prisma.TelemetryReadingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TelemetryReadingScalarFieldEnum | Prisma.TelemetryReadingScalarFieldEnum[]
+}
+
+/**
+ * Parameter.weatherReadings
+ */
+export type Parameter$weatherReadingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WeatherReading
+   */
+  select?: Prisma.WeatherReadingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WeatherReading
+   */
+  omit?: Prisma.WeatherReadingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WeatherReadingInclude<ExtArgs> | null
+  where?: Prisma.WeatherReadingWhereInput
+  orderBy?: Prisma.WeatherReadingOrderByWithRelationInput | Prisma.WeatherReadingOrderByWithRelationInput[]
+  cursor?: Prisma.WeatherReadingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WeatherReadingScalarFieldEnum | Prisma.WeatherReadingScalarFieldEnum[]
 }
 
 /**

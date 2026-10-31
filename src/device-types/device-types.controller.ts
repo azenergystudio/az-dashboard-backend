@@ -35,9 +35,9 @@ export class DeviceTypesController {
   }
 
   @Get()
-  @Permissions(
-    PermissionsList.DEVICE_TYPES_READ,
-  )
+  // @Permissions(
+  //   PermissionsList.DEVICE_TYPES_READ,
+  // )
   findAll(
     @Query() query: DeviceTypeQueryDto,
   ) {
@@ -45,9 +45,9 @@ export class DeviceTypesController {
   }
 
   @Get(':id')
-  @Permissions(
-    PermissionsList.DEVICE_TYPES_READ,
-  )
+  // @Permissions(
+  //   PermissionsList.DEVICE_TYPES_READ,
+  // )
   findOne(@Param('id') id: string) {
     return this.service.findOne(id);
   }

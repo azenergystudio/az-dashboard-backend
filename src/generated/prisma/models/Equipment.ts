@@ -276,6 +276,7 @@ export type EquipmentWhereInput = {
   room?: Prisma.XOR<Prisma.RoomScalarRelationFilter, Prisma.RoomWhereInput>
   devices?: Prisma.EquipmentDeviceListRelationFilter
   connectedRooms?: Prisma.EquipmentRoomMappingListRelationFilter
+  telemetryReadings?: Prisma.TelemetryReadingListRelationFilter
 }
 
 export type EquipmentOrderByWithRelationInput = {
@@ -295,6 +296,7 @@ export type EquipmentOrderByWithRelationInput = {
   room?: Prisma.RoomOrderByWithRelationInput
   devices?: Prisma.EquipmentDeviceOrderByRelationAggregateInput
   connectedRooms?: Prisma.EquipmentRoomMappingOrderByRelationAggregateInput
+  telemetryReadings?: Prisma.TelemetryReadingOrderByRelationAggregateInput
 }
 
 export type EquipmentWhereUniqueInput = Prisma.AtLeast<{
@@ -317,6 +319,7 @@ export type EquipmentWhereUniqueInput = Prisma.AtLeast<{
   room?: Prisma.XOR<Prisma.RoomScalarRelationFilter, Prisma.RoomWhereInput>
   devices?: Prisma.EquipmentDeviceListRelationFilter
   connectedRooms?: Prisma.EquipmentRoomMappingListRelationFilter
+  telemetryReadings?: Prisma.TelemetryReadingListRelationFilter
 }, "id" | "seqNo">
 
 export type EquipmentOrderByWithAggregationInput = {
@@ -372,6 +375,7 @@ export type EquipmentCreateInput = {
   room: Prisma.RoomCreateNestedOneWithoutEquipmentInput
   devices?: Prisma.EquipmentDeviceCreateNestedManyWithoutEquipmentInput
   connectedRooms?: Prisma.EquipmentRoomMappingCreateNestedManyWithoutEquipmentInput
+  telemetryReadings?: Prisma.TelemetryReadingCreateNestedManyWithoutEquipmentInput
 }
 
 export type EquipmentUncheckedCreateInput = {
@@ -389,6 +393,7 @@ export type EquipmentUncheckedCreateInput = {
   updatedAt?: Date | string
   devices?: Prisma.EquipmentDeviceUncheckedCreateNestedManyWithoutEquipmentInput
   connectedRooms?: Prisma.EquipmentRoomMappingUncheckedCreateNestedManyWithoutEquipmentInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedCreateNestedManyWithoutEquipmentInput
 }
 
 export type EquipmentUpdateInput = {
@@ -406,6 +411,7 @@ export type EquipmentUpdateInput = {
   room?: Prisma.RoomUpdateOneRequiredWithoutEquipmentNestedInput
   devices?: Prisma.EquipmentDeviceUpdateManyWithoutEquipmentNestedInput
   connectedRooms?: Prisma.EquipmentRoomMappingUpdateManyWithoutEquipmentNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUpdateManyWithoutEquipmentNestedInput
 }
 
 export type EquipmentUncheckedUpdateInput = {
@@ -423,6 +429,7 @@ export type EquipmentUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   devices?: Prisma.EquipmentDeviceUncheckedUpdateManyWithoutEquipmentNestedInput
   connectedRooms?: Prisma.EquipmentRoomMappingUncheckedUpdateManyWithoutEquipmentNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedUpdateManyWithoutEquipmentNestedInput
 }
 
 export type EquipmentCreateManyInput = {
@@ -534,6 +541,11 @@ export type EquipmentSumOrderByAggregateInput = {
 export type EquipmentScalarRelationFilter = {
   is?: Prisma.EquipmentWhereInput
   isNot?: Prisma.EquipmentWhereInput
+}
+
+export type EquipmentNullableScalarRelationFilter = {
+  is?: Prisma.EquipmentWhereInput | null
+  isNot?: Prisma.EquipmentWhereInput | null
 }
 
 export type EquipmentCreateNestedManyWithoutRoomInput = {
@@ -648,6 +660,22 @@ export type EquipmentUpdateOneRequiredWithoutConnectedRoomsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EquipmentUpdateToOneWithWhereWithoutConnectedRoomsInput, Prisma.EquipmentUpdateWithoutConnectedRoomsInput>, Prisma.EquipmentUncheckedUpdateWithoutConnectedRoomsInput>
 }
 
+export type EquipmentCreateNestedOneWithoutTelemetryReadingsInput = {
+  create?: Prisma.XOR<Prisma.EquipmentCreateWithoutTelemetryReadingsInput, Prisma.EquipmentUncheckedCreateWithoutTelemetryReadingsInput>
+  connectOrCreate?: Prisma.EquipmentCreateOrConnectWithoutTelemetryReadingsInput
+  connect?: Prisma.EquipmentWhereUniqueInput
+}
+
+export type EquipmentUpdateOneWithoutTelemetryReadingsNestedInput = {
+  create?: Prisma.XOR<Prisma.EquipmentCreateWithoutTelemetryReadingsInput, Prisma.EquipmentUncheckedCreateWithoutTelemetryReadingsInput>
+  connectOrCreate?: Prisma.EquipmentCreateOrConnectWithoutTelemetryReadingsInput
+  upsert?: Prisma.EquipmentUpsertWithoutTelemetryReadingsInput
+  disconnect?: Prisma.EquipmentWhereInput | boolean
+  delete?: Prisma.EquipmentWhereInput | boolean
+  connect?: Prisma.EquipmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EquipmentUpdateToOneWithWhereWithoutTelemetryReadingsInput, Prisma.EquipmentUpdateWithoutTelemetryReadingsInput>, Prisma.EquipmentUncheckedUpdateWithoutTelemetryReadingsInput>
+}
+
 export type EquipmentCreateWithoutRoomInput = {
   id?: string
   seqNo: number
@@ -662,6 +690,7 @@ export type EquipmentCreateWithoutRoomInput = {
   equipmentType: Prisma.EquipmentTypeCreateNestedOneWithoutEquipmentInput
   devices?: Prisma.EquipmentDeviceCreateNestedManyWithoutEquipmentInput
   connectedRooms?: Prisma.EquipmentRoomMappingCreateNestedManyWithoutEquipmentInput
+  telemetryReadings?: Prisma.TelemetryReadingCreateNestedManyWithoutEquipmentInput
 }
 
 export type EquipmentUncheckedCreateWithoutRoomInput = {
@@ -678,6 +707,7 @@ export type EquipmentUncheckedCreateWithoutRoomInput = {
   updatedAt?: Date | string
   devices?: Prisma.EquipmentDeviceUncheckedCreateNestedManyWithoutEquipmentInput
   connectedRooms?: Prisma.EquipmentRoomMappingUncheckedCreateNestedManyWithoutEquipmentInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedCreateNestedManyWithoutEquipmentInput
 }
 
 export type EquipmentCreateOrConnectWithoutRoomInput = {
@@ -738,6 +768,7 @@ export type EquipmentCreateWithoutEquipmentTypeInput = {
   room: Prisma.RoomCreateNestedOneWithoutEquipmentInput
   devices?: Prisma.EquipmentDeviceCreateNestedManyWithoutEquipmentInput
   connectedRooms?: Prisma.EquipmentRoomMappingCreateNestedManyWithoutEquipmentInput
+  telemetryReadings?: Prisma.TelemetryReadingCreateNestedManyWithoutEquipmentInput
 }
 
 export type EquipmentUncheckedCreateWithoutEquipmentTypeInput = {
@@ -754,6 +785,7 @@ export type EquipmentUncheckedCreateWithoutEquipmentTypeInput = {
   updatedAt?: Date | string
   devices?: Prisma.EquipmentDeviceUncheckedCreateNestedManyWithoutEquipmentInput
   connectedRooms?: Prisma.EquipmentRoomMappingUncheckedCreateNestedManyWithoutEquipmentInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedCreateNestedManyWithoutEquipmentInput
 }
 
 export type EquipmentCreateOrConnectWithoutEquipmentTypeInput = {
@@ -796,6 +828,7 @@ export type EquipmentCreateWithoutDevicesInput = {
   equipmentType: Prisma.EquipmentTypeCreateNestedOneWithoutEquipmentInput
   room: Prisma.RoomCreateNestedOneWithoutEquipmentInput
   connectedRooms?: Prisma.EquipmentRoomMappingCreateNestedManyWithoutEquipmentInput
+  telemetryReadings?: Prisma.TelemetryReadingCreateNestedManyWithoutEquipmentInput
 }
 
 export type EquipmentUncheckedCreateWithoutDevicesInput = {
@@ -812,6 +845,7 @@ export type EquipmentUncheckedCreateWithoutDevicesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   connectedRooms?: Prisma.EquipmentRoomMappingUncheckedCreateNestedManyWithoutEquipmentInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedCreateNestedManyWithoutEquipmentInput
 }
 
 export type EquipmentCreateOrConnectWithoutDevicesInput = {
@@ -844,6 +878,7 @@ export type EquipmentUpdateWithoutDevicesInput = {
   equipmentType?: Prisma.EquipmentTypeUpdateOneRequiredWithoutEquipmentNestedInput
   room?: Prisma.RoomUpdateOneRequiredWithoutEquipmentNestedInput
   connectedRooms?: Prisma.EquipmentRoomMappingUpdateManyWithoutEquipmentNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUpdateManyWithoutEquipmentNestedInput
 }
 
 export type EquipmentUncheckedUpdateWithoutDevicesInput = {
@@ -860,6 +895,7 @@ export type EquipmentUncheckedUpdateWithoutDevicesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   connectedRooms?: Prisma.EquipmentRoomMappingUncheckedUpdateManyWithoutEquipmentNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedUpdateManyWithoutEquipmentNestedInput
 }
 
 export type EquipmentCreateWithoutConnectedRoomsInput = {
@@ -876,6 +912,7 @@ export type EquipmentCreateWithoutConnectedRoomsInput = {
   equipmentType: Prisma.EquipmentTypeCreateNestedOneWithoutEquipmentInput
   room: Prisma.RoomCreateNestedOneWithoutEquipmentInput
   devices?: Prisma.EquipmentDeviceCreateNestedManyWithoutEquipmentInput
+  telemetryReadings?: Prisma.TelemetryReadingCreateNestedManyWithoutEquipmentInput
 }
 
 export type EquipmentUncheckedCreateWithoutConnectedRoomsInput = {
@@ -892,6 +929,7 @@ export type EquipmentUncheckedCreateWithoutConnectedRoomsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   devices?: Prisma.EquipmentDeviceUncheckedCreateNestedManyWithoutEquipmentInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedCreateNestedManyWithoutEquipmentInput
 }
 
 export type EquipmentCreateOrConnectWithoutConnectedRoomsInput = {
@@ -924,6 +962,7 @@ export type EquipmentUpdateWithoutConnectedRoomsInput = {
   equipmentType?: Prisma.EquipmentTypeUpdateOneRequiredWithoutEquipmentNestedInput
   room?: Prisma.RoomUpdateOneRequiredWithoutEquipmentNestedInput
   devices?: Prisma.EquipmentDeviceUpdateManyWithoutEquipmentNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUpdateManyWithoutEquipmentNestedInput
 }
 
 export type EquipmentUncheckedUpdateWithoutConnectedRoomsInput = {
@@ -940,6 +979,91 @@ export type EquipmentUncheckedUpdateWithoutConnectedRoomsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   devices?: Prisma.EquipmentDeviceUncheckedUpdateManyWithoutEquipmentNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedUpdateManyWithoutEquipmentNestedInput
+}
+
+export type EquipmentCreateWithoutTelemetryReadingsInput = {
+  id?: string
+  seqNo: number
+  tag: string
+  name?: string | null
+  manufacturer?: string | null
+  model?: string | null
+  serialNumber?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  equipmentType: Prisma.EquipmentTypeCreateNestedOneWithoutEquipmentInput
+  room: Prisma.RoomCreateNestedOneWithoutEquipmentInput
+  devices?: Prisma.EquipmentDeviceCreateNestedManyWithoutEquipmentInput
+  connectedRooms?: Prisma.EquipmentRoomMappingCreateNestedManyWithoutEquipmentInput
+}
+
+export type EquipmentUncheckedCreateWithoutTelemetryReadingsInput = {
+  id?: string
+  seqNo: number
+  tag: string
+  name?: string | null
+  manufacturer?: string | null
+  model?: string | null
+  serialNumber?: string | null
+  equipmentTypeId: string
+  roomId: string
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  devices?: Prisma.EquipmentDeviceUncheckedCreateNestedManyWithoutEquipmentInput
+  connectedRooms?: Prisma.EquipmentRoomMappingUncheckedCreateNestedManyWithoutEquipmentInput
+}
+
+export type EquipmentCreateOrConnectWithoutTelemetryReadingsInput = {
+  where: Prisma.EquipmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.EquipmentCreateWithoutTelemetryReadingsInput, Prisma.EquipmentUncheckedCreateWithoutTelemetryReadingsInput>
+}
+
+export type EquipmentUpsertWithoutTelemetryReadingsInput = {
+  update: Prisma.XOR<Prisma.EquipmentUpdateWithoutTelemetryReadingsInput, Prisma.EquipmentUncheckedUpdateWithoutTelemetryReadingsInput>
+  create: Prisma.XOR<Prisma.EquipmentCreateWithoutTelemetryReadingsInput, Prisma.EquipmentUncheckedCreateWithoutTelemetryReadingsInput>
+  where?: Prisma.EquipmentWhereInput
+}
+
+export type EquipmentUpdateToOneWithWhereWithoutTelemetryReadingsInput = {
+  where?: Prisma.EquipmentWhereInput
+  data: Prisma.XOR<Prisma.EquipmentUpdateWithoutTelemetryReadingsInput, Prisma.EquipmentUncheckedUpdateWithoutTelemetryReadingsInput>
+}
+
+export type EquipmentUpdateWithoutTelemetryReadingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  tag?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  model?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  equipmentType?: Prisma.EquipmentTypeUpdateOneRequiredWithoutEquipmentNestedInput
+  room?: Prisma.RoomUpdateOneRequiredWithoutEquipmentNestedInput
+  devices?: Prisma.EquipmentDeviceUpdateManyWithoutEquipmentNestedInput
+  connectedRooms?: Prisma.EquipmentRoomMappingUpdateManyWithoutEquipmentNestedInput
+}
+
+export type EquipmentUncheckedUpdateWithoutTelemetryReadingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seqNo?: Prisma.IntFieldUpdateOperationsInput | number
+  tag?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  model?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  equipmentTypeId?: Prisma.StringFieldUpdateOperationsInput | string
+  roomId?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  devices?: Prisma.EquipmentDeviceUncheckedUpdateManyWithoutEquipmentNestedInput
+  connectedRooms?: Prisma.EquipmentRoomMappingUncheckedUpdateManyWithoutEquipmentNestedInput
 }
 
 export type EquipmentCreateManyRoomInput = {
@@ -970,6 +1094,7 @@ export type EquipmentUpdateWithoutRoomInput = {
   equipmentType?: Prisma.EquipmentTypeUpdateOneRequiredWithoutEquipmentNestedInput
   devices?: Prisma.EquipmentDeviceUpdateManyWithoutEquipmentNestedInput
   connectedRooms?: Prisma.EquipmentRoomMappingUpdateManyWithoutEquipmentNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUpdateManyWithoutEquipmentNestedInput
 }
 
 export type EquipmentUncheckedUpdateWithoutRoomInput = {
@@ -986,6 +1111,7 @@ export type EquipmentUncheckedUpdateWithoutRoomInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   devices?: Prisma.EquipmentDeviceUncheckedUpdateManyWithoutEquipmentNestedInput
   connectedRooms?: Prisma.EquipmentRoomMappingUncheckedUpdateManyWithoutEquipmentNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedUpdateManyWithoutEquipmentNestedInput
 }
 
 export type EquipmentUncheckedUpdateManyWithoutRoomInput = {
@@ -1030,6 +1156,7 @@ export type EquipmentUpdateWithoutEquipmentTypeInput = {
   room?: Prisma.RoomUpdateOneRequiredWithoutEquipmentNestedInput
   devices?: Prisma.EquipmentDeviceUpdateManyWithoutEquipmentNestedInput
   connectedRooms?: Prisma.EquipmentRoomMappingUpdateManyWithoutEquipmentNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUpdateManyWithoutEquipmentNestedInput
 }
 
 export type EquipmentUncheckedUpdateWithoutEquipmentTypeInput = {
@@ -1046,6 +1173,7 @@ export type EquipmentUncheckedUpdateWithoutEquipmentTypeInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   devices?: Prisma.EquipmentDeviceUncheckedUpdateManyWithoutEquipmentNestedInput
   connectedRooms?: Prisma.EquipmentRoomMappingUncheckedUpdateManyWithoutEquipmentNestedInput
+  telemetryReadings?: Prisma.TelemetryReadingUncheckedUpdateManyWithoutEquipmentNestedInput
 }
 
 export type EquipmentUncheckedUpdateManyWithoutEquipmentTypeInput = {
@@ -1070,11 +1198,13 @@ export type EquipmentUncheckedUpdateManyWithoutEquipmentTypeInput = {
 export type EquipmentCountOutputType = {
   devices: number
   connectedRooms: number
+  telemetryReadings: number
 }
 
 export type EquipmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   devices?: boolean | EquipmentCountOutputTypeCountDevicesArgs
   connectedRooms?: boolean | EquipmentCountOutputTypeCountConnectedRoomsArgs
+  telemetryReadings?: boolean | EquipmentCountOutputTypeCountTelemetryReadingsArgs
 }
 
 /**
@@ -1101,6 +1231,13 @@ export type EquipmentCountOutputTypeCountConnectedRoomsArgs<ExtArgs extends runt
   where?: Prisma.EquipmentRoomMappingWhereInput
 }
 
+/**
+ * EquipmentCountOutputType without action
+ */
+export type EquipmentCountOutputTypeCountTelemetryReadingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TelemetryReadingWhereInput
+}
+
 
 export type EquipmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1119,6 +1256,7 @@ export type EquipmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   room?: boolean | Prisma.RoomDefaultArgs<ExtArgs>
   devices?: boolean | Prisma.Equipment$devicesArgs<ExtArgs>
   connectedRooms?: boolean | Prisma.Equipment$connectedRoomsArgs<ExtArgs>
+  telemetryReadings?: boolean | Prisma.Equipment$telemetryReadingsArgs<ExtArgs>
   _count?: boolean | Prisma.EquipmentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["equipment"]>
 
@@ -1177,6 +1315,7 @@ export type EquipmentInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   room?: boolean | Prisma.RoomDefaultArgs<ExtArgs>
   devices?: boolean | Prisma.Equipment$devicesArgs<ExtArgs>
   connectedRooms?: boolean | Prisma.Equipment$connectedRoomsArgs<ExtArgs>
+  telemetryReadings?: boolean | Prisma.Equipment$telemetryReadingsArgs<ExtArgs>
   _count?: boolean | Prisma.EquipmentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EquipmentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1195,6 +1334,7 @@ export type $EquipmentPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     room: Prisma.$RoomPayload<ExtArgs>
     devices: Prisma.$EquipmentDevicePayload<ExtArgs>[]
     connectedRooms: Prisma.$EquipmentRoomMappingPayload<ExtArgs>[]
+    telemetryReadings: Prisma.$TelemetryReadingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1607,6 +1747,7 @@ export interface Prisma__EquipmentClient<T, Null = never, ExtArgs extends runtim
   room<T extends Prisma.RoomDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoomDefaultArgs<ExtArgs>>): Prisma.Prisma__RoomClient<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   devices<T extends Prisma.Equipment$devicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Equipment$devicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EquipmentDevicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   connectedRooms<T extends Prisma.Equipment$connectedRoomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Equipment$connectedRoomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EquipmentRoomMappingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  telemetryReadings<T extends Prisma.Equipment$telemetryReadingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Equipment$telemetryReadingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TelemetryReadingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2094,6 +2235,30 @@ export type Equipment$connectedRoomsArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.EquipmentRoomMappingScalarFieldEnum | Prisma.EquipmentRoomMappingScalarFieldEnum[]
+}
+
+/**
+ * Equipment.telemetryReadings
+ */
+export type Equipment$telemetryReadingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TelemetryReading
+   */
+  select?: Prisma.TelemetryReadingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TelemetryReading
+   */
+  omit?: Prisma.TelemetryReadingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TelemetryReadingInclude<ExtArgs> | null
+  where?: Prisma.TelemetryReadingWhereInput
+  orderBy?: Prisma.TelemetryReadingOrderByWithRelationInput | Prisma.TelemetryReadingOrderByWithRelationInput[]
+  cursor?: Prisma.TelemetryReadingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TelemetryReadingScalarFieldEnum | Prisma.TelemetryReadingScalarFieldEnum[]
 }
 
 /**
